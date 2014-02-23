@@ -91,11 +91,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="guiObj.cpp" />
+    <ClCompile Include="pos.cpp" />
     <ClCompile Include="src\graphicsUpdate.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="guiObj.h" />
+    <ClInclude Include="pos.h" />
     <ClInclude Include="src\testApp.h" />
   </ItemGroup>
   <ItemGroup>
