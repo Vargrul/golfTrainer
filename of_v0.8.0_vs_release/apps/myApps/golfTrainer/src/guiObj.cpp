@@ -12,6 +12,12 @@ guiObj::guiObj(pos p,float w,float h,ofImage i){
 	height = h;
 	image = i;
 };
+guiObj::guiObj(pos p,float w,float h,string s){
+	position = p;
+	width = w;
+	height = h;
+	image.loadImage(s);
+};
 
 void guiObj::setPos(pos p){position = p;};
 pos guiObj::getPos(){return position;};
@@ -23,6 +29,9 @@ float guiObj::getWidth(){return width;};
 float guiObj::getHeight(){return height;};
 
 void guiObj::setImage(ofImage i){image = i;};
+void guiObj::setImage(string s){
+	image.loadImage(s);
+};
 ofImage guiObj::getImage(){return image;};
 
 void guiObj::draw(){

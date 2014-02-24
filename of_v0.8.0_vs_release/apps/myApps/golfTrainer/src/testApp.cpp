@@ -3,6 +3,8 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	vector<guiObj> guiObjects;
+	guiObj testObj();
+	guiObjects.insert(guiObjects.begin(),testObj);
 }
 
 //--------------------------------------------------------------

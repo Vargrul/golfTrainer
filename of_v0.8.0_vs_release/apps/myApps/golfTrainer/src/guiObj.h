@@ -11,6 +11,7 @@ class guiObj
 public:
 	guiObj(void);
 	guiObj(pos,float,float,ofImage);
+	guiObj(pos,float,float,string);
 
 	void setPos(pos);
 	pos getPos();
@@ -22,6 +23,7 @@ public:
 	float getHeight();
 
 	void setImage(ofImage);
+	void setImage(string s);
 	ofImage getImage();
 
 	void draw();
