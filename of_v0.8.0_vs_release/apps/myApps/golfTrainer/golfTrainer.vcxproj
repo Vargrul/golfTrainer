@@ -93,7 +93,6 @@
   <ItemGroup>
     <ClCompile Include="guiObj.cpp" />
     <ClCompile Include="pos.cpp" />
-    <ClCompile Include="src\graphicsUpdate.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testApp.cpp" />
   </ItemGroup>

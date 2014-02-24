@@ -24,3 +24,7 @@ float guiObj::getHeight(){return height;};
 
 void guiObj::setImage(ofImage i){image = i;};
 ofImage guiObj::getImage(){return image;};
+
+void guiObj::draw(){
+	
+};
