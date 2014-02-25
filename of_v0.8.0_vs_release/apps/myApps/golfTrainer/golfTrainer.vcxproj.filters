@@ -24,9 +24,7 @@
     <ClInclude Include="src\pos.h">
       <Filter>headers</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="icon.rc" />
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="headers">
@@ -35,5 +33,16 @@
     <Filter Include="cppfiles">
       <UniqueIdentifier>{74afefde-e817-4762-a309-adf07ac34d91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="images">
+      <UniqueIdentifier>{0fd2dbad-3df7-4d91-a883-25db1bffb1c8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\testSquare.png">
+      <Filter>images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="golfTrainer.rc" />
   </ItemGroup>
 </Project>

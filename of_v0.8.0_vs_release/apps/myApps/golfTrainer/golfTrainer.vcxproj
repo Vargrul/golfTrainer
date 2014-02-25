@@ -97,6 +97,7 @@
     <ClCompile Include="src\testApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="src\guiObj.h" />
     <ClInclude Include="src\pos.h" />
     <ClInclude Include="src\testApp.h" />
@@ -107,9 +108,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="icon.rc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
-    </ResourceCompile>
+    <Image Include="images\testSquare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="golfTrainer.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

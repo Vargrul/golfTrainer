@@ -6,21 +6,24 @@
 class guiObj
 {
 	pos position;
-	float width, height;
+	int width, height;
 	ofImage image;
 public:
 	guiObj(void);
-	guiObj(pos,float,float,ofImage);
-	guiObj(pos,float,float,string);
+	guiObj(pos p,ofImage i);
+	guiObj(pos,int,int,ofImage);
+	guiObj(pos,int,int,string);
+	guiObj(string s);
+	guiObj(pos p,string s);
 
 	void setPos(pos);
 	pos getPos();
 
-	void setSize(float,float);
-	void setWidth(float);
-	void setHeight(float);
-	float getWidth();
-	float getHeight();
+	void setSize(int,int);
+	void setWidth(int);
+	void setHeight(int);
+	int getWidth();
+	int getHeight();
 
 	void setImage(ofImage);
 	void setImage(string s);

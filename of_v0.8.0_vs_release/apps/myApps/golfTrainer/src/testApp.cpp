@@ -1,10 +1,11 @@
 #include "testApp.h"
+	
+vector<guiObj> vecGuiObj;
 
 //--------------------------------------------------------------
 void testApp::setup(){
-	vector<guiObj> guiObjects;
-	guiObj testObj();
-	guiObjects.insert(guiObjects.begin(),testObj);
+	vecGuiObj.insert(vecGuiObj.begin(),guiObj(pos(10,10,0),"../images/testSquare.png"));
+	vecGuiObj.insert(vecGuiObj.begin(),guiObj(pos(200,200,0),"../images/testSquare.png"));
 }
 
 //--------------------------------------------------------------
@@ -14,6 +15,11 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 
+	//Draws all guiObjects in vecGuiObj
+	for(int i = 0 ; i < vecGuiObj.size() ; i++)
+	{ 
+		vecGuiObj[i].draw();
+	}
 }
 
 //--------------------------------------------------------------
