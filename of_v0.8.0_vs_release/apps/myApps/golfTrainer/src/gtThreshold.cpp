@@ -1,6 +1,6 @@
-#include "gtThreshhold.h"
+#include "gtThreshold.h"
 
-ofImage threshhold(ofImage imgIn, float hueMinIn, float hueMaxIn, float satMinIn, float satMaxIn, float brigMinIn, float brigMaxIn){
+ofImage threshold(ofImage imgIn, float hueMinIn, float hueMaxIn, float satMinIn, float satMaxIn, float brigMinIn, float brigMaxIn){
 	ofImage imgOut = imgIn;
 
 	for(int i = 0 ; i < imgIn.getWidth ; i++){
@@ -16,7 +16,7 @@ ofImage threshhold(ofImage imgIn, float hueMinIn, float hueMaxIn, float satMinIn
 	}
 };
 
-tuple<float,float,float,float,float,float> adapThreshVal(ofImage imgIn){
+tuple<float,float,float,float,float,float> adapThresVal(ofImage imgIn){
 	float hueMin, hueMax, satMin, satMax, brigMin, brigMax; //the output variable in the outputoging order
 
 	return tuple<float,float,float,float,float,float> (hueMin, hueMax, satMin, satMax, brigMin, brigMax);
