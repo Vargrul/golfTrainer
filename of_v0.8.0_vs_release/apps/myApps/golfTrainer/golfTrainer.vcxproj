@@ -92,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\guiObj.cpp" />
+    <ClCompile Include="src\gtThreshhold.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\pos.cpp" />
     <ClCompile Include="src\testApp.cpp" />
@@ -99,6 +100,7 @@
   <ItemGroup>
     <ClInclude Include="resource1.h" />
     <ClInclude Include="src\guiObj.h" />
+    <ClInclude Include="src\gtThreshhold.h" />
     <ClInclude Include="src\pos.h" />
     <ClInclude Include="src\testApp.h" />
   </ItemGroup>

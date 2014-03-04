@@ -4,7 +4,6 @@ guiObj::guiObj(void){
 	position.setX(0.0f);
 	position.setY(0.0f);
 	position.setZ(0.0f);
-
 	width, height = 0;
 	image;
 };
@@ -13,7 +12,6 @@ guiObj::guiObj(pos p,ofImage i){
 	image = i;
 	width = image.getWidth();
 	height = image.getHeight();
-	
 };
 guiObj::guiObj(pos p,int w,int h,ofImage i){
 	position = p;
