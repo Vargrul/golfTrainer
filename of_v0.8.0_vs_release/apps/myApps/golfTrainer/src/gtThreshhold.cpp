@@ -16,3 +16,9 @@ ofImage threshhold(ofImage imgIn, float hueMinIn, float hueMaxIn, float satMinIn
 	}
 };
 
+tuple<float,float,float,float,float,float> adapThreshVal(ofImage imgIn){
+	float hueMin, hueMax, satMin, satMax, brigMin, brigMax; //the output variable in the outputoging order
+
+	return tuple<float,float,float,float,float,float> (hueMin, hueMax, satMin, satMax, brigMin, brigMax);
+};
+
