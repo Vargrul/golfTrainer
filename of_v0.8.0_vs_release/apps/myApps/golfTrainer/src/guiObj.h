@@ -30,4 +30,5 @@ public:
 	ofImage getImage();
 
 	void draw();
+	bool mouseCheck(int x, int y);
 };

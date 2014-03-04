@@ -60,3 +60,11 @@ ofImage guiObj::getImage(){return image;};
 void guiObj::draw(){
 	image.draw(position.getX(),position.getY());
 };
+bool guiObj::mouseCheck(int x, int y){
+	if (x > position.getX() && x < position.getX() + getWidth()){
+		if(y > position.getY() && y < position.getY() + getHeight()){
+			return true;
+		}
+	}
+	else return false;
+};
