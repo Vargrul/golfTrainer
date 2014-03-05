@@ -14,6 +14,7 @@ ofImage threshold(ofImage imgIn, float hueMinIn, float hueMaxIn, float satMinIn,
 			else imgOut.setColor(ofColor(0,0,0));
 		}
 	}
+	return imgOut;
 };
 
 tuple<float,float,float,float,float,float> adapThresVal(ofImage imgIn){
