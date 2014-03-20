@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "guiObj.h"
-#include "gtThreshold.h"
 
 class testApp : public ofBaseApp{
 	public:

@@ -23,3 +23,7 @@ tuple<float,float,float,float,float,float> adapThresVal(ofImage imgIn){
 	return tuple<float,float,float,float,float,float> (hueMin, hueMax, satMin, satMax, brigMin, brigMax);
 };
 
+float otsuThreshVal(ofImage img){
+
+};
+

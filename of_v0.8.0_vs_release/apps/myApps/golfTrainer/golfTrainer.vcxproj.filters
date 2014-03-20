@@ -16,6 +16,9 @@
     <ClCompile Include="src\gtThreshold.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\img2integralImg.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\testApp.h">
@@ -29,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="resource1.h" />
     <ClInclude Include="src\gtThreshold.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\img2integralImg.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
