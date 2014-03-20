@@ -1,7 +1,6 @@
 #pragma once
 
 #include "testApp.h"
-#include <tuple>
 
 enum colorImg2integral{ RED , GREEN , BLUE , MEAN };
 

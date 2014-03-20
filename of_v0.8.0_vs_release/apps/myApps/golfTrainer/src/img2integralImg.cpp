@@ -4,8 +4,7 @@ void img2integralImg(ofImage imgIn, colorImg2integral sIn,vector<vector<int>>& o
 	
 	int height = imgIn.getHeight;
 	int width = imgIn.getWidth;
-
-
+	
 	for(int i = 0 ; i < width ; i++){
 		int sum = 0;
 		for(int j = 0 ; j < height ; j++){
