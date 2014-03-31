@@ -19,6 +19,9 @@
     <ClCompile Include="src\img2integralImg.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\normalization.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\testApp.h">
@@ -35,6 +38,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="src\img2integralImg.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\normalization.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
