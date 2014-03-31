@@ -3,8 +3,8 @@
 ofImage threshold(ofImage imgIn, float hueMinIn, float hueMaxIn, float satMinIn, float satMaxIn, float brigMinIn, float brigMaxIn){
 	ofImage imgOut = imgIn;
 
-	for(int i = 0 ; i < imgIn.getWidth ; i++){
-		for(int j = 0 ; j < imgIn.getHeight ; j++){
+	for(int i = 0 ; i < imgIn.getWidth() ; i++){
+		for(int j = 0 ; j < imgIn.getHeight() ; j++){
 
 			ofColor pixColor = imgIn.getColor(i,j);
 
@@ -24,6 +24,6 @@ tuple<float,float,float,float,float,float> adapThresVal(ofImage imgIn){
 };
 
 float otsuThreshVal(ofImage img){
-
+	return NULL;
 };
 
