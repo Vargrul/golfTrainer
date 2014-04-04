@@ -31,3 +31,16 @@ void img2integralImg(ofImage imgIn, colorImg2integral sIn,vector<vector<int>>& o
 		}
 	}
 };
+
+int intImgAreaSum(vector<vector<int>> inImg, pos upLeft, pos botRight){
+	int a = inImg[upLeft.getX()][upLeft.getY()];
+	int b = inImg[botRight.getX()][upLeft.getY()];
+	int c = inImg[botRight.getX()][botRight.getY()];
+	int d = inImg[upLeft.getX()][botRight.getY()];
+
+	int returnVal;
+
+	returnVal = c+a-b-d;
+
+	return returnVal;
+}

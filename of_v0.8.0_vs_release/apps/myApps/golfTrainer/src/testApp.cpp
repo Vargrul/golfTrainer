@@ -46,7 +46,9 @@ void testApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
 	if(button == 0){
-		//Draws all guiObjects in vecGuiObj
+
+
+
 		for(int i = 0 ; i < vecGuiObj.size() ; i++)
 		{ 
 			if(vecGuiObj[i].mouseCheck(x,y) == true){
