@@ -22,6 +22,9 @@
     <ClCompile Include="src\roiLimiter.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\normalization.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\testApp.h">
@@ -43,6 +46,10 @@
     <ClInclude Include="src\roiLimiter.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="src\normalization.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+
   </ItemGroup>
   <ItemGroup>
     <Filter Include="headers">
