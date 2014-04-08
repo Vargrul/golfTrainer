@@ -91,9 +91,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\backgroundSub.cpp" />
+    <ClCompile Include="src\BLOB.cpp" />
+    <ClCompile Include="src\BLOBanalysis.cpp" />
     <ClCompile Include="src\guiObj.cpp" />
-    <ClCompile Include="src\gtThreshold.cpp" />
     <ClCompile Include="src\img2integralImg.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\normalization.cpp" />
@@ -103,7 +103,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource1.h" />
-    <ClInclude Include="src\backgroundSub.h" />
+    <ClInclude Include="src\BLOB.h" />
+    <ClInclude Include="src\BLOBanalysis.h" />
     <ClInclude Include="src\guiObj.h" />
     <ClInclude Include="src\gtThreshold.h" />
     <ClInclude Include="src\img2integralImg.h" />

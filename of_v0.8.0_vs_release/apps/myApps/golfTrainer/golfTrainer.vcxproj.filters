@@ -13,19 +13,19 @@
     <ClCompile Include="src\pos.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
-    <ClCompile Include="src\gtThreshold.cpp">
-      <Filter>cppfiles</Filter>
-    </ClCompile>
     <ClCompile Include="src\img2integralImg.cpp">
-      <Filter>cppfiles</Filter>
-    </ClCompile>
-    <ClCompile Include="src\backgroundSub.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
     <ClCompile Include="src\roiLimiter.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
     <ClCompile Include="src\normalization.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BLOB.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BLOBanalysis.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
   </ItemGroup>
@@ -46,16 +46,18 @@
     <ClInclude Include="src\img2integralImg.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="src\backgroundSub.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="src\roiLimiter.h">
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="src\normalization.h">
       <Filter>headers</Filter>
     </ClInclude>
-
+    <ClInclude Include="src\BLOB.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BLOBanalysis.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="headers">

@@ -4,7 +4,7 @@ ofImage normalizeROI(vector<pos[2]> i, ofImage inROI){
 	//Output image
 	ofImage outROI=inROI;
 	//Loop through each position pair
-	for(j = 0; j < i.size(); j++){
+	for(int j = 0; j < i.size(); j++){
 
 		//Get the two positions
 		pos upperleft = i[j][0], lowerright = i[j][1];
