@@ -6,36 +6,47 @@ guiObj::guiObj(void){
 	position.setZ(0.0f);
 	width, height = 0;
 	image;
+	videoSrc;
 };
 guiObj::guiObj(pos p,ofImage i){
 	position = p;
 	image = i;
 	width = image.getWidth();
 	height = image.getHeight();
+	videoSrc;
+	sourceType = IMAGE;
 };
 guiObj::guiObj(pos p,int w,int h,ofImage i){
 	position = p;
 	width = w;
 	height = h;
 	image = i;
+	videoSrc;
+	sourceType = IMAGE;
 };
-guiObj::guiObj(pos p,int w,int h,string s){
+guiObj::guiObj(pos p,int w,int h,string s,sourceChooser sc){
 	position = p;
 	width = w;
 	height = h;
-	image.loadImage(s);
+	if(sc == VIDEO)	setVideo(s);
+	else setImage(s);
+	sourceType = sc;
 };
-guiObj::guiObj(string s){
-	setImage(s);
+guiObj::guiObj(string s,sourceChooser sc){
 	width = image.getWidth();
 	height = image.getHeight();
 	position = pos(0.0f,0.0f,0.0f);
+	if(sc == VIDEO)	setVideo(s);
+	else setImage(s);
+	sourceType = sc;
 };
-guiObj::guiObj(pos p,string s){
-	setImage(s);
+guiObj::guiObj(pos p,string s,sourceChooser sc){
 	width = image.getWidth();
 	height = image.getHeight();
 	position = p;
+	if(sc == VIDEO) setVideo(s);
+	else setImage(s);
+	sourceType = sc;
 };
 
 void guiObj::setPos(pos p){position = p;};
@@ -55,9 +66,22 @@ void guiObj::setImage(string s){
 };
 ofImage guiObj::getImage(){return image;};
 
+void guiObj::setVideo(ofVideoPlayer i){videoSrc = i;};
+void guiObj::setVideo(string s){
+	videoSrc.loadMovie(s);
+	height = videoSrc.getHeight();
+	width = videoSrc.getWidth();
+}
+void guiObj::play(){videoSrc.play();};
+void guiObj::nextFrame(){videoSrc.nextFrame();};
+void guiObj::vidUpdate(){videoSrc.update();};
+ofVideoPlayer guiObj::getVideo(){return videoSrc;};
+
 void guiObj::draw(){
-	image.draw(position.getX(),position.getY());
+	if(sourceType == IMAGE)	image.draw(position.getX(),position.getY());
+	else videoSrc.draw(position.getX(),position.getY());
 };
+
 bool guiObj::mouseCheck(int x, int y){
 	if (x > position.getX() && x < position.getX() + getWidth()){
 		if(y > position.getY() && y < position.getY() + getHeight()){

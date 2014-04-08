@@ -2,8 +2,8 @@
 
 void img2integralImg(ofImage imgIn, colorImg2integral sIn,vector<vector<int>>& outVec){
 	
-	int height = imgIn.getHeight;
-	int width = imgIn.getWidth;
+	int height = imgIn.getHeight();
+	int width = imgIn.getWidth();
 	
 	for(int i = 0 ; i < width ; i++){
 		int sum = 0;
@@ -23,11 +23,24 @@ void img2integralImg(ofImage imgIn, colorImg2integral sIn,vector<vector<int>>& o
 			//Updating the integral image with the value for the given pixel
 			sum = sum + currentVal;
 			if(i == 0){
-				outVec.insert(outVec.end,vector<int>());
-				outVec[i].insert(outVec[i].end,sum);
+				outVec.insert(outVec.end(),vector<int>());
+				outVec[i].insert(outVec[i].end(),sum);
 			}else{
-				outVec[i].insert(outVec[i].end,currentVal_im1 + sum);
+				outVec[i].insert(outVec[i].end(),currentVal_im1 + sum);
 			}
 		}
 	}
 };
+
+int intImgAreaSum(vector<vector<int>> inImg, pos upLeft, pos botRight){
+	int a = inImg[upLeft.getX()][upLeft.getY()];
+	int b = inImg[botRight.getX()][upLeft.getY()];
+	int c = inImg[botRight.getX()][botRight.getY()];
+	int d = inImg[upLeft.getX()][botRight.getY()];
+
+	int returnVal;
+
+	returnVal = c+a-b-d;
+
+	return returnVal;
+}

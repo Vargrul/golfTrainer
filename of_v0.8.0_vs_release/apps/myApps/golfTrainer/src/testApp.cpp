@@ -4,17 +4,18 @@ vector<guiObj> vecGuiObj;
 
 //--------------------------------------------------------------
 void testApp::setup(){
-	vecGuiObj.insert(vecGuiObj.begin(),guiObj(pos(10,10,0),"../images/testSquare.png"));
-	vecGuiObj.insert(vecGuiObj.begin(),guiObj(pos(200,200,0),"../images/testSquare.png"));
+	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(10,10,0),"../../images/testSquare.png",IMAGE));
+	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(200,200,0),"../../videos/th1_55w.mov",VIDEO));
+	vecGuiObj[1].play();
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
+	vecGuiObj[1].vidUpdate();
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-
 	//Draws all guiObjects in vecGuiObj
 	for(int i = 0 ; i < vecGuiObj.size() ; i++)
 	{ 
@@ -45,7 +46,9 @@ void testApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
 	if(button == 0){
-		//Draws all guiObjects in vecGuiObj
+
+
+
 		for(int i = 0 ; i < vecGuiObj.size() ; i++)
 		{ 
 			if(vecGuiObj[i].mouseCheck(x,y) == true){
