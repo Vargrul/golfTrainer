@@ -65,6 +65,7 @@ void guiObj::setImage(string s){
 	width = image.getWidth();
 };
 ofImage guiObj::getImage(){return image;};
+void guiObj::setImgFromPixels(ofPixels i){image.setFromPixels(i);};
 
 void guiObj::setVideo(ofVideoPlayer i){videoSrc = i;};
 void guiObj::setVideo(string s){
@@ -75,6 +76,8 @@ void guiObj::setVideo(string s){
 void guiObj::play(){videoSrc.play();};
 void guiObj::nextFrame(){videoSrc.nextFrame();};
 void guiObj::vidUpdate(){videoSrc.update();};
+void guiObj::setFrame(int i){videoSrc.setFrame(i);};
+ofPixels guiObj::getPixelsRef(){if(sourceType == VIDEO)return videoSrc.getPixelsRef();else return image.getPixelsRef();};
 ofVideoPlayer guiObj::getVideo(){return videoSrc;};
 
 void guiObj::draw(){

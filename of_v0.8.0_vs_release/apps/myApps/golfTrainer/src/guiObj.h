@@ -33,6 +33,7 @@ public:
 	void setImage(ofImage);
 	void setImage(string s);
 	ofImage getImage();
+	void guiObj::setImgFromPixels(ofPixels i);
 
 	void setVideo(ofVideoPlayer i);
 	void setVideo(string s);
@@ -40,6 +41,8 @@ public:
 	void play();
 	void nextFrame();
 	void vidUpdate();
+	void guiObj::setFrame(int i);
+	ofPixels guiObj::getPixelsRef();
 
 	void draw();
 	bool mouseCheck(int x, int y);
