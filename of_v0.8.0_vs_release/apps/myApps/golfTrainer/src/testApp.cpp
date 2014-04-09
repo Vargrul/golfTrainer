@@ -1,17 +1,19 @@
 #include "testApp.h"
 	
 vector<guiObj> vecGuiObj;
+ofImage curFrame;
 
 //--------------------------------------------------------------
 void testApp::setup(){
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(10,10,0),"../../images/testSquare.png",IMAGE));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(200,200,0),"../../videos/th1_55w.mov",VIDEO));
-	vecGuiObj[1].play();
+	//vecGuiObj[1].play();
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
 	vecGuiObj[1].vidUpdate();
+	vecGuiObj[1].nextFrame();
 }
 
 //--------------------------------------------------------------

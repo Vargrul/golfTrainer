@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\testApp.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiObj.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pos.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gtThreshold.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\img2integralImg.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="src\roiLimiter.cpp">
+=======
+    <ClCompile Include="src\normalization.cpp">
+>>>>>>> 331ea57abb44d2c1770ca47d520de606098b5967
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\testApp.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiObj.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pos.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="src\gtThreshold.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\img2integralImg.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="src\roiLimiter.h">
+=======
+    <ClInclude Include="src\normalization.h">
+>>>>>>> 331ea57abb44d2c1770ca47d520de606098b5967
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{00b35b6b-8f27-44a1-8d64-240ce41e30f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cppfiles">
+      <UniqueIdentifier>{74afefde-e817-4762-a309-adf07ac34d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="images">
+      <UniqueIdentifier>{0fd2dbad-3df7-4d91-a883-25db1bffb1c8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\testSquare.png">
+      <Filter>images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="golfTrainer.rc" />
+  </ItemGroup>
+</Project>

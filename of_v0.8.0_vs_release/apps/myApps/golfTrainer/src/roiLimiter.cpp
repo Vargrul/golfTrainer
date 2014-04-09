@@ -1,6 +1,6 @@
 #include "roiLimiter.h"
 
-void roiLimiter(vector<vector<int>> integralImageIn,vector<vector<pos>> outPositions){
+void roiLimiter(vector<vector<int>> integralImageIn,vector<vector<pos>>& outPositions){
 	float areaSize = 1;
 	int width = integralImageIn.size();
 	int height = integralImageIn[0].size();
@@ -20,7 +20,7 @@ void roiLimiter(vector<vector<int>> integralImageIn,vector<vector<pos>> outPosit
 			int temp = intImgAreaSum(integralImageIn,outPositions[i][0],outPositions[i][1]);
 
 			//calculation of checkVal should be revisited
-			float checkVal = 25 * ((outPositions[i][1].getX() - outPositions[i][0].getX()) * (outPositions[i][1].getY() - outPositions[i][0].getY()));
+			float checkVal = 25;// * ((outPositions[i][1].getX() - outPositions[i][0].getX()) * (outPositions[i][1].getY() - outPositions[i][0].getY()));
 			
 			//stores if the current ROI should be split or not
 			if(temp > checkVal) storeToChange.insert(storeToChange.end(), true);
