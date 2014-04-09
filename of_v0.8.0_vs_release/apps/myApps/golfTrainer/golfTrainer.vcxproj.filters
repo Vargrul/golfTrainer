@@ -13,9 +13,6 @@
     <ClCompile Include="src\pos.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
-    <ClCompile Include="src\gtThreshold.cpp">
-      <Filter>cppfiles</Filter>
-    </ClCompile>
     <ClCompile Include="src\img2integralImg.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
@@ -23,6 +20,12 @@
       <Filter>cppfiles</Filter>
     </ClCompile>
     <ClCompile Include="src\normalization.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BLOB.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BLOBanalysis.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,7 +52,12 @@
     <ClInclude Include="src\normalization.h">
       <Filter>headers</Filter>
     </ClInclude>
-
+    <ClInclude Include="src\BLOB.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BLOBanalysis.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="headers">
