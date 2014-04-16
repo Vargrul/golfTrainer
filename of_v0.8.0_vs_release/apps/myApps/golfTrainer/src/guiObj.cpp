@@ -77,6 +77,7 @@ void guiObj::play(){videoSrc.play();};
 void guiObj::nextFrame(){videoSrc.nextFrame();};
 void guiObj::vidUpdate(){videoSrc.update();};
 void guiObj::setFrame(int i){videoSrc.setFrame(i);};
+int guiObj::getCurrentFrame(){return videoSrc.getCurrentFrame();};
 ofPixels guiObj::getPixelsRef(){if(sourceType == VIDEO)return videoSrc.getPixelsRef();else return image.getPixelsRef();};
 ofVideoPlayer guiObj::getVideo(){return videoSrc;};
 
