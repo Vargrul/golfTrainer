@@ -1,6 +1,7 @@
 #include "testApp.h"
 	
 vector<guiObj> vecGuiObj;
+ofImage currentFrameOfImage;
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -16,6 +17,7 @@ void testApp::setup(){
 void testApp::update(){
 	vecGuiObj[1].vidUpdate();
 	vecGuiObj[1].nextFrame();
+	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 	
 }
 

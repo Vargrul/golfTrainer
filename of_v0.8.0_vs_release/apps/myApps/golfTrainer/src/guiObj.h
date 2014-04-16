@@ -42,6 +42,7 @@ public:
 	void nextFrame();
 	void vidUpdate();
 	void guiObj::setFrame(int i);
+	int guiObj::getCurrentFrame();
 	ofPixels guiObj::getPixelsRef();
 
 	void draw();
