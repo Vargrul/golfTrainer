@@ -91,6 +91,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\backgroundSub.cpp" />
     <ClCompile Include="src\BLOB.cpp" />
     <ClCompile Include="src\BLOBanalysis.cpp" />
     <ClCompile Include="src\guiObj.cpp" />
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="src\backgroundSub.h" />
     <ClInclude Include="src\BLOB.h" />
     <ClInclude Include="src\BLOBanalysis.h" />
     <ClInclude Include="src\guiObj.h" />
