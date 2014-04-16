@@ -28,7 +28,7 @@ ofImage normalizeROI(vector<pos[2]> i, ofImage inROI){
 
 ofColor RGB2rgb(pos i, ofImage inROI){
 	//Get RBG of pixel position i
-	ofColor temp;// = inROI[i.getX()][i.getY()];
+	ofColor temp = inROI.getColor(i.getX(),i.getY());
 	//convert to rg -> r = \frac{R}{R+G+B}  g = \frac{G}{R+G+B}  b = \frac{B}{R+G+B}
 	//we only need the r and g values since r+g+b=1 so we can calculate b value when needed
 	ofColor outCol;
