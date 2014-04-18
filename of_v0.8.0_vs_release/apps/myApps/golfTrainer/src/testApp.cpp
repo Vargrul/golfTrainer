@@ -2,6 +2,7 @@
 	
 vector<guiObj> vecGuiObj;
 ofImage currentFrameOfImage;
+vector<vector<int>> integralImage;
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -11,6 +12,11 @@ void testApp::setup(){
 	vecGuiObj[1].setFrame(100);
 	vecGuiObj[0].setImgFromPixels(vecGuiObj[1].getPixelsRef());
 	vecGuiObj[1].setFrame(0);
+	
+	img2integralImg(vecGuiObj[0].getImage(),MEAN,integralImage);
+
+	cout << intImgAreaSum(integralImage,pos(10,10,0),pos(15,15,0)) << endl;
+
 }
 
 //--------------------------------------------------------------
@@ -18,6 +24,7 @@ void testApp::update(){
 	vecGuiObj[1].vidUpdate();
 	vecGuiObj[1].nextFrame();
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
+
 	
 }
 

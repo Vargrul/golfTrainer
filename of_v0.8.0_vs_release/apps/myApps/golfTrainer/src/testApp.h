@@ -2,6 +2,10 @@
 
 #include "ofMain.h"
 #include "guiObj.h"
+#include "img2integralImg.h"
+
+#include <iostream>
+#include <fstream>
 
 class testApp : public ofBaseApp{
 	public:

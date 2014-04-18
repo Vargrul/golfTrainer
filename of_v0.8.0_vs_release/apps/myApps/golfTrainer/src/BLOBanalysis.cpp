@@ -10,7 +10,7 @@ vector<BLOB> BLOBanalysis(ofImage inputImg){
 		for(int j = 0;j<inputImg.getWidth();j++){
 			//Look for pixels that aren't black.
 			int tempVal;// = pixels[i * inputImg.getHeight() + j];
-			if(tempVal !=0){
+			if(tempVal != 0){
 				//Starts the connected componant analysis and inserts the resulting
 				//BLOB object in the BLOB list.
 				BLOBlist.push_back(connectedComponantAnalysis(j,i,inputImg));

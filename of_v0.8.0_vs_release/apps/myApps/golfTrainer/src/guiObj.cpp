@@ -92,5 +92,5 @@ bool guiObj::mouseCheck(int x, int y){
 			return true;
 		}
 	}
-	else return false;
+	else{return false;}
 };
