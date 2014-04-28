@@ -3,27 +3,56 @@
 vector<guiObj> vecGuiObj;
 ofImage currentFrameOfImage;
 vector<vector<int>> integralImage;
+vector <ofImage> pastFrames;
+ofImage avarageBackground;
 
 //--------------------------------------------------------------
 void testApp::setup(){
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,0,0),"../../images/testSquare.png",IMAGE));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,0,0),"../../videos/th1_55w.mov",VIDEO));
+	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,480,0),"../../images/testSquare.png",IMAGE));
+	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,480,0),"../../images/testSquare.png",IMAGE));
 	//vecGuiObj[1].play();
 	vecGuiObj[1].setFrame(100);
 	vecGuiObj[0].setImgFromPixels(vecGuiObj[1].getPixelsRef());
-	vecGuiObj[1].setFrame(0);
-	
-	img2integralImg(vecGuiObj[0].getImage(),MEAN,integralImage);
-
-	cout << intImgAreaSum(integralImage,pos(10,10,0),pos(15,15,0)) << endl;
-
+	vecGuiObj[1].setFrame(75);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
 	vecGuiObj[1].vidUpdate();
 	vecGuiObj[1].nextFrame();
+
+	//The flow of the program
+	//Input
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
+
+	//Segmentation: Foreground
+	//1: needing a vector with the frames used to make an avarageBackground.
+	
+	if(pastFrames.size() >= 5){
+		pastFrames.pop_back();
+		pastFrames.insert(pastFrames.begin(),currentFrameOfImage);
+	}else{
+		pastFrames.insert(pastFrames.begin(),currentFrameOfImage);
+	}
+
+	if(pastFrames.size() > 1) avarageBackground = gt_averageBackground(pastFrames);
+	vecGuiObj[3].setImage(avarageBackground);
+
+	vecGuiObj[2].setImage(gt_backgroundSubtraction(avarageBackground,currentFrameOfImage));
+	
+	//Integral Image
+
+	//Roi Limiter
+
+	//Normalize ROIs
+
+	//Probability Map
+
+	//Segmentation: Binary Image
+
+	//BLOB analasys
 
 	
 }

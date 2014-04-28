@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "guiObj.h"
 #include "img2integralImg.h"
+#include "backgroundSub.h"
 
 #include <iostream>
 #include <fstream>
