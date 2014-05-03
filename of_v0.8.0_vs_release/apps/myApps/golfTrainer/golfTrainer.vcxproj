@@ -94,6 +94,7 @@
     <ClCompile Include="src\backgroundSub.cpp" />
     <ClCompile Include="src\BLOB.cpp" />
     <ClCompile Include="src\BLOBanalysis.cpp" />
+    <ClCompile Include="src\gtThreshold.cpp" />
     <ClCompile Include="src\guiObj.cpp" />
     <ClCompile Include="src\img2integralImg.cpp" />
     <ClCompile Include="src\main.cpp" />

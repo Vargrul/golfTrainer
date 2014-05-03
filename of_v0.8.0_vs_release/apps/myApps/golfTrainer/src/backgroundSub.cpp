@@ -18,11 +18,9 @@ ofImage gt_averageBackground(vector<ofImage> frames){
 			}
 		}
 	}
-	for (int i=0; i<frames.size();i++){
-		for(int x=0; x<frames[i].getWidth();x++){
-			for(int y=0; y<frames[i].getHeight();y++){
-				average.setColor(x,y,ofColor((tempRed[x][y]/frames.size()),(tempGreen[x][y]/frames.size()),(tempBlue[x][y]/frames.size())));
-			}
+	for(int x=0; x<frames[0].getWidth();x++){
+		for(int y=0; y<frames[0].getHeight();y++){
+			average.setColor(x,y,ofColor((tempRed[x][y]/frames.size()),(tempGreen[x][y]/frames.size()),(tempBlue[x][y]/frames.size())));
 		}
 	}
 	return average;

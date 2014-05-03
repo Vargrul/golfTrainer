@@ -31,6 +31,9 @@
     <ClCompile Include="src\backgroundSub.cpp">
       <Filter>cppfiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\gtThreshold.cpp">
+      <Filter>cppfiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\testApp.h">

@@ -3,5 +3,5 @@
 #include "testApp.h"
 #include "pos.h"
 
-ofImage normalizeROI(vector<pos[2]> i, ofImage ROIs);
+ofImage normalizeROI(vector<vector<pos>> i, ofImage ROIs);
 ofColor RGB2rgb(pos i,ofImage inROI);

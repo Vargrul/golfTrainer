@@ -4,9 +4,15 @@
 #include "guiObj.h"
 #include "img2integralImg.h"
 #include "backgroundSub.h"
+#include "roiLimiter.h"
+#include "normalization.h"
+#include "gtThreshold.h"
+#include "BLOB.h"
+#include "BLOBanalysis.h"
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 class testApp : public ofBaseApp{
 	public:
