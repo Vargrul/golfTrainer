@@ -55,6 +55,9 @@
     <ClCompile Include="src\testApp.cpp">
       <Filter>src\cppfiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\logging.cpp">
+      <Filter>src\cppfiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -438,6 +441,9 @@
       <Filter>src\headers</Filter>
     </ClInclude>
     <ClInclude Include="src\testApp.h">
+      <Filter>src\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logging.h">
       <Filter>src\headers</Filter>
     </ClInclude>
   </ItemGroup>

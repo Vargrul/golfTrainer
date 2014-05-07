@@ -7,7 +7,7 @@ ofImage avarageBackground;
 vector<vector<pos>> roiPositions;
 ofxCvContourFinder contourFinder;
 
-string timing;
+bool printLegend = true;
 string legend = "initial_part | avarageBackground | gt_backgroundSubtraction | thresholdRGB | img2integralImg | roiLimiter | normalizeROI | ";
 
 //--------------------------------------------------------------
@@ -31,100 +31,54 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-	clock_t start = clock();
-	unsigned int msElapsed;
-	clock_t timeElapsed;
+	vector<string> loggingData;
+	clock_t lastTime = clock();
 	string sTemp;
 	ofImage normImg, bgSub, threshRGB;
 
 	vecGuiObj[1].vidUpdate();
 	vecGuiObj[1].nextFrame();
 
+	loggingData.push_back(captureTime(lastTime));
+
 	//The flow of the program
 	//Input
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 
-	
-	//Timing from the start of the update loop to this part
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
+	loggingData.push_back(captureTime(lastTime));
 
 	//segmentation Background
 	bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
-
-	//Delta time from last timing
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
+	loggingData.push_back(captureTime(lastTime));
 
 	avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
-	
-	//Delta time from last timing
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
+	loggingData.push_back(captureTime(lastTime));
 
 	//Segmentation: Binary Image
 	threshRGB = thresholdRGB(bgSub,40,40,40);
-
-	//Delta time from last timing
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
+	loggingData.push_back(captureTime(lastTime));
 
 	/*
 	//Integral Image
 	integralImage.clear();
 	img2integralImg(threshRGB, MEAN, integralImage);
-
-	//Delta time from last timing
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
-	*/
+	loggingData.push_back(captureTime(lastTime));
 
 	//Roi Limiter
 	//TO-DO: Change the way the roiLimiter makes a decition of how interesting the ROI is
-	
 	/*
 	roiPositions.clear();
 	roiLimiter(integralImage, roiPositions);
-
-	for(int i = 0 ; i < roiPositions.size() ; i++){
-		cout << roiPositions[i][0].getX() << "x" << roiPositions[i][0].getY() << "	";
-	}
-	cout << endl;
-
-	//Delta time from last timing
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
+	loggingData.push_back(captureTime(lastTime));
 	*/
 
+	/*
 	//Normalize ROIs
 	//Is it needed? or is it only time consuming?
-	//if(pastFrames.size() > 1)normImg = normalizeROI(roiPositions,bgSub);
-	
-	//Delta time from last timing
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
-	
+	if(pastFrames.size() > 1)normImg = normalizeROI(roiPositions,bgSub);
+	loggingData.push_back(captureTime(lastTime));
+	*/
+
 	//Probability Map
 
 
@@ -136,18 +90,15 @@ void testApp::update(){
 	contourImageColor.setFromPixels(threshRGB.getPixelsRef());
 	contourImage = contourImageColor;
 	contourFinder.findContours(contourImage,0,100,10,false,false);
+	loggingData.push_back(captureTime(lastTime));
 
-
-
-	cout << contourFinder.nBlobs << endl;
+	logData("testLog1.txt",loggingData,' ',printLegend,legend);
 
 	vecGuiObj[0].setImage(bgSub);
 	vecGuiObj[2].setImage(threshRGB);
 	//vecGuiObj[3].setImage(normImg);
 
-	cout << legend << endl;
-	cout << timing  << endl;
-	timing.clear();
+	printLegend = false;
 }
 
 //--------------------------------------------------------------
@@ -171,7 +122,7 @@ void testApp::draw(){
 		ofSetColor(255,0,0);
 		ofFill();
 
-		ofCircle(contourFinder.blobs[i].centroid.x,contourFinder.blobs[i].centroid.y+480,3);
+		ofCircle(contourFinder.blobs[i].centroid.x,contourFinder.blobs[i].centroid.y+480,2);
 		
 		ofSetColor(255,255,255);
 		ofNoFill();

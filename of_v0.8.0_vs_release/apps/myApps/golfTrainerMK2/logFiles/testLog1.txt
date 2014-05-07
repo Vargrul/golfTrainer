@@ -1,0 +1,6 @@
+initial_part | avarageBackground | gt_backgroundSubtraction | thresholdRGB | img2integralImg | roiLimiter | normalizeROI | 
+4 5 329 501 545 556
+4 5 322 493 538 547
+11 12 331 504 549 559
+14 15 336 506 550 559
+11 12 332 502 545 557

@@ -8,12 +8,12 @@
 #include "normalization.h"
 #include "gtThreshold.h"
 #include "ofxCvMain.h"
+#include "logging.h"
 //#include "BLOB.h"
 //#include "BLOBanalysis.h"
 
 #include <iostream>
 #include <fstream>
-#include <string>
 
 class testApp : public ofBaseApp{
 	public:
