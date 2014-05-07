@@ -3,7 +3,7 @@
 vector<BLOB> BLOBanalysis(ofImage inputImg){
 	//Vector for holding BLOBs
 	vector<BLOB> BLOBlist;
-	ofPixels pixels = inputImg.getPixelsRef;
+	ofPixels pixels = inputImg.getPixelsRef();
 
 	//Loop through every pixel in the input image
 	for(int i = 0;i<inputImg.getHeight();i++){

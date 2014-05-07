@@ -7,8 +7,9 @@
 #include "roiLimiter.h"
 #include "normalization.h"
 #include "gtThreshold.h"
-#include "BLOB.h"
-#include "BLOBanalysis.h"
+#include "ofMain.h"
+//#include "BLOB.h"
+//#include "BLOBanalysis.h"
 
 #include <iostream>
 #include <fstream>

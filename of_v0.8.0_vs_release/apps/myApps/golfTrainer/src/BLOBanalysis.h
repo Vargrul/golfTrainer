@@ -16,4 +16,4 @@ BLOB connectedComponantAnalysis(int x, int y, ofImage& inputImg);
 void burnPixel(int x, int y, ofImage& inputImg, BLOB& blob);
 //Checks the neighborhood for non-black pixels. Then stores then pixel and burns it
 // Recursive
-void neighborCheck(int x, int y, ofImage& inputImg, BLOB& blob);
+	void neighborCheck(int x, int y, ofImage& inputImg, BLOB& blob);

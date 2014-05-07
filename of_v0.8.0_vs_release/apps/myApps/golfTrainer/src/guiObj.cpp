@@ -91,6 +91,7 @@ bool guiObj::mouseCheck(int x, int y){
 		if(y > position.getY() && y < position.getY() + getHeight()){
 			return true;
 		}
+		return false;
 	}
 	else{return false;}
 };

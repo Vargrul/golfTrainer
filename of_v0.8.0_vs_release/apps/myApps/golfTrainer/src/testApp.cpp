@@ -6,6 +6,7 @@ vector<vector<int>> integralImage;
 vector <ofImage> pastFrames;
 ofImage avarageBackground;
 vector<vector<pos>> roiPositions;
+ofx
 
 string timing;
 string legend = "initial_part | avarageBackground | gt_backgroundSubtraction | thresholdRGB | img2integralImg | roiLimiter | normalizeROI | ";
@@ -19,7 +20,7 @@ void testApp::setup(){
 	//vecGuiObj[1].play();
 	vecGuiObj[1].setFrame(100);
 	//vecGuiObj[0].setImgFromPixels(vecGuiObj[1].getPixelsRef());
-	vecGuiObj[1].setFrame(300);
+	vecGuiObj[1].setFrame(80);
 
 	roiPositions.push_back(vector<pos>());
 	roiPositions[0].push_back(pos(0,0,0));
@@ -44,7 +45,7 @@ void testApp::update(){
 	//Segmentation: Foreground
 	//1: needing a vector with the frames used to make an avarageBackground.
 	
-	if(pastFrames.size() >= 5){
+	if(pastFrames.size() >= 3){
 		pastFrames.pop_back();
 		pastFrames.insert(pastFrames.begin(),currentFrameOfImage);
 	}else{
@@ -117,7 +118,7 @@ void testApp::update(){
 
 	//Normalize ROIs
 	//Is it needed? or is it only time consuming?
-	if(pastFrames.size() > 1)normImg = normalizeROI(roiPositions,currentFrameOfImage);
+	//if(pastFrames.size() > 1)normImg = normalizeROI(roiPositions,bgSub);
 	
 	//Delta time from last timing
 	timeElapsed = clock() - start;
@@ -131,11 +132,13 @@ void testApp::update(){
 
 
 	//BLOB analasys
-	vector<BLOB> blobs = BLOBanalysis(threshRGB);
+	//vector<BLOB> blobs = BLOBanalysis(threshRGB);
+
+
 
 	vecGuiObj[0].setImage(bgSub);
 	vecGuiObj[2].setImage(threshRGB);
-	vecGuiObj[3].setImage(normImg);
+	//vecGuiObj[3].setImage(normImg);
 
 	cout << legend << endl;
 	cout << timing  << endl;
@@ -183,7 +186,7 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-	if(button == 0){
+	/*if(button == 0){
 
 
 
@@ -193,7 +196,7 @@ void testApp::mousePressed(int x, int y, int button){
 				//do something
 			}
 		}
-	}
+	}*/
 }
 
 //--------------------------------------------------------------
