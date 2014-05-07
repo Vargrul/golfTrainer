@@ -3,7 +3,6 @@
 vector<guiObj> vecGuiObj;
 ofImage currentFrameOfImage;
 vector<vector<int>> integralImage;
-vector <ofImage> pastFrames;
 ofImage avarageBackground;
 vector<vector<pos>> roiPositions;
 ofxCvContourFinder contourFinder;
@@ -25,6 +24,9 @@ void testApp::setup(){
 	roiPositions.push_back(vector<pos>());
 	roiPositions[0].push_back(pos(0,0,0));
 	roiPositions[0].push_back(pos(99,99,0));
+
+	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
+	avarageBackground = currentFrameOfImage;
 }
 
 //--------------------------------------------------------------
@@ -42,16 +44,7 @@ void testApp::update(){
 	//Input
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 
-	//Segmentation: Foreground
-	//1: needing a vector with the frames used to make an avarageBackground.
 	
-	if(pastFrames.size() >= 3){
-		pastFrames.pop_back();
-		pastFrames.insert(pastFrames.begin(),currentFrameOfImage);
-	}else{
-		pastFrames.insert(pastFrames.begin(),currentFrameOfImage);
-	}
-
 	//Timing from the start of the update loop to this part
 	timeElapsed = clock() - start;
 	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
@@ -59,15 +52,7 @@ void testApp::update(){
 	timing.append(sTemp + " | ");
 	start = clock();
 
-	if(pastFrames.size() > 1) avarageBackground = gt_averageBackground(pastFrames);
-
-	//Delta time from last timing
-	timeElapsed = clock() - start;
-	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
-	sTemp = to_string(timeElapsed);
-	timing.append(sTemp + " | ");
-	start = clock();
-
+	//segmentation Background
 	bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
 
 	//Delta time from last timing
@@ -76,7 +61,16 @@ void testApp::update(){
 	sTemp = to_string(timeElapsed);
 	timing.append(sTemp + " | ");
 	start = clock();
+
+	avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
 	
+	//Delta time from last timing
+	timeElapsed = clock() - start;
+	msElapsed = timeElapsed / (CLOCKS_PER_SEC / 1000);
+	sTemp = to_string(timeElapsed);
+	timing.append(sTemp + " | ");
+	start = clock();
+
 	//Segmentation: Binary Image
 	threshRGB = thresholdRGB(bgSub,40,40,40);
 
@@ -87,7 +81,7 @@ void testApp::update(){
 	timing.append(sTemp + " | ");
 	start = clock();
 
-	
+	/*
 	//Integral Image
 	integralImage.clear();
 	img2integralImg(threshRGB, MEAN, integralImage);
@@ -98,11 +92,14 @@ void testApp::update(){
 	sTemp = to_string(timeElapsed);
 	timing.append(sTemp + " | ");
 	start = clock();
+	*/
 
 	//Roi Limiter
 	//TO-DO: Change the way the roiLimiter makes a decition of how interesting the ROI is
+	
+	/*
 	roiPositions.clear();
-	if(pastFrames.size() > 2) roiLimiter(integralImage, roiPositions);
+	roiLimiter(integralImage, roiPositions);
 
 	for(int i = 0 ; i < roiPositions.size() ; i++){
 		cout << roiPositions[i][0].getX() << "x" << roiPositions[i][0].getY() << "	";
@@ -115,6 +112,7 @@ void testApp::update(){
 	sTemp = to_string(timeElapsed);
 	timing.append(sTemp + " | ");
 	start = clock();
+	*/
 
 	//Normalize ROIs
 	//Is it needed? or is it only time consuming?
