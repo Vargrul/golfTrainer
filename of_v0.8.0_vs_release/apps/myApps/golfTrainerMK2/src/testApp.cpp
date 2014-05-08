@@ -25,6 +25,7 @@ void testApp::setup(){
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 	avarageBackground = currentFrameOfImage;
+	//test change for iteration 1
 }
 
 //--------------------------------------------------------------
