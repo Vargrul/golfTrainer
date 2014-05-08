@@ -8,18 +8,16 @@ vector<vector<pos>> roiPositions;
 ofxCvContourFinder contourFinder;
 
 bool printLegend = true;
-string legend = "initial_part | avarageBackground | gt_backgroundSubtraction | thresholdRGB | img2integralImg | roiLimiter | normalizeROI | ";
+string legend = "initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea centroidX controidY";
 
 //--------------------------------------------------------------
 void testApp::setup(){
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,0,0),"../../images/testImage.png",IMAGE));
-	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,0,0),"../../videos/th1_55w.mov",VIDEO));
+	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,0,0),"../../videos/5secHighToLowTest2(1).mov",VIDEO));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,480,0),"../../images/testSquare.png",IMAGE));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,480,0),"../../images/testSquare.png",IMAGE));
 	//vecGuiObj[1].play();
-	vecGuiObj[1].setFrame(100);
-	//vecGuiObj[0].setImgFromPixels(vecGuiObj[1].getPixelsRef());
-	vecGuiObj[1].setFrame(80);
+	vecGuiObj[1].setFrame(150);
 
 	roiPositions.push_back(vector<pos>());
 	roiPositions[0].push_back(pos(0,0,0));
@@ -36,10 +34,9 @@ void testApp::update(){
 	string sTemp;
 	ofImage normImg, bgSub, threshRGB;
 
-	vecGuiObj[1].vidUpdate();
 	vecGuiObj[1].nextFrame();
-
-	loggingData.push_back(captureTime(lastTime));
+	vecGuiObj[1].vidUpdate();
+	
 
 	//The flow of the program
 	//Input
@@ -48,14 +45,16 @@ void testApp::update(){
 	loggingData.push_back(captureTime(lastTime));
 
 	//segmentation Background
+	 //Background Subtraction
 	bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
 	loggingData.push_back(captureTime(lastTime));
 
-	avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
+	 //Updating the avarage background
+	avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.95f);
 	loggingData.push_back(captureTime(lastTime));
 
 	//Segmentation: Binary Image
-	threshRGB = thresholdRGB(bgSub,40,40,40);
+	threshRGB = thresholdRGB(bgSub,50,50,50);
 	loggingData.push_back(captureTime(lastTime));
 
 	/*
@@ -89,8 +88,20 @@ void testApp::update(){
 	ofxCvColorImage contourImageColor;
 	contourImageColor.setFromPixels(threshRGB.getPixelsRef());
 	contourImage = contourImageColor;
-	contourFinder.findContours(contourImage,0,100,10,false,false);
+	contourFinder.findContours(contourImage,0,100,1,false,false);
 	loggingData.push_back(captureTime(lastTime));
+
+	loggingData.push_back(to_string(contourFinder.nBlobs));
+
+	if(contourFinder.nBlobs){
+		loggingData.push_back(to_string(contourFinder.blobs.at(0).nPts));
+		loggingData.push_back(to_string(contourFinder.blobs.at(0).centroid.x));
+		loggingData.push_back(to_string(contourFinder.blobs.at(0).centroid.y));
+	}else{
+		loggingData.push_back("NULL");
+		loggingData.push_back("NULL");
+		loggingData.push_back("NULL");
+	}
 
 	logData("testLog1.txt",loggingData,' ',printLegend,legend);
 
@@ -99,6 +110,7 @@ void testApp::update(){
 	//vecGuiObj[3].setImage(normImg);
 
 	printLegend = false;
+	//avarageBackground = currentFrameOfImage;
 }
 
 //--------------------------------------------------------------
@@ -121,11 +133,15 @@ void testApp::draw(){
 	for(int i = 0 ; i < contourFinder.nBlobs ; i++){
 		ofSetColor(255,0,0);
 		ofFill();
-
 		ofCircle(contourFinder.blobs[i].centroid.x,contourFinder.blobs[i].centroid.y+480,2);
-		
-		ofSetColor(255,255,255);
+		ofSetColor(0,255,0);
 		ofNoFill();
+
+		ofRectangle r = contourFinder.blobs.at(i).boundingRect;
+		r.y += 480;
+		ofRect(r);
+
+		ofSetColor(255,255,255);
 	}
 }
 
