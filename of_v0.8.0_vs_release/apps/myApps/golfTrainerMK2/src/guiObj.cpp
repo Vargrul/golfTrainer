@@ -74,12 +74,14 @@ void guiObj::setVideo(string s){
 	width = videoSrc.getWidth();
 }
 void guiObj::play(){videoSrc.play();};
+void guiObj::stop(){videoSrc.stop();};
 void guiObj::nextFrame(){videoSrc.nextFrame();};
 void guiObj::vidUpdate(){videoSrc.update();};
 void guiObj::setFrame(int i){videoSrc.setFrame(i);};
 int guiObj::getCurrentFrame(){return videoSrc.getCurrentFrame();};
 ofPixels guiObj::getPixelsRef(){if(sourceType == VIDEO)return videoSrc.getPixelsRef();else return image.getPixelsRef();};
 ofVideoPlayer guiObj::getVideo(){return videoSrc;};
+bool guiObj::isFrameNew(){return videoSrc.isFrameNew();};
 
 void guiObj::draw(){
 	if(sourceType == IMAGE)	image.draw(position.getX(),position.getY());

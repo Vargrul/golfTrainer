@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <array>
 
 class testApp : public ofBaseApp{
 	public:

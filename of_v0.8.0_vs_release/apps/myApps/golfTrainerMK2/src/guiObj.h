@@ -33,17 +33,19 @@ public:
 	void setImage(ofImage);
 	void setImage(string s);
 	ofImage getImage();
-	void guiObj::setImgFromPixels(ofPixels i);
+	void setImgFromPixels(ofPixels i);
 
 	void setVideo(ofVideoPlayer i);
 	void setVideo(string s);
 	ofVideoPlayer getVideo();
 	void play();
+	void stop();
 	void nextFrame();
 	void vidUpdate();
-	void guiObj::setFrame(int i);
-	int guiObj::getCurrentFrame();
-	ofPixels guiObj::getPixelsRef();
+	void setFrame(int i);
+	int getCurrentFrame();
+	ofPixels getPixelsRef();
+	bool isFrameNew();
 
 	void draw();
 	bool mouseCheck(int x, int y);
