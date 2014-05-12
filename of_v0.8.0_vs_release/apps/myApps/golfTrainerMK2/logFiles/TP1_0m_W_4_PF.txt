@@ -1,0 +1,9 @@
+frameNumber initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3
+850 236 543 709 711 712 0 0 0 0 0 0 0 0 0 0
+878 38 347 512 514 515 1 19 616.311096 343.977783 0 0 0 0 0 0
+906 19 330 498 500 501 1 15 444.956512 397.840576 0 0 0 0 0 0
+934 25 338 504 506 507 1 13 347.174591 397.920624 0 0 0 0 0 0
+963 15 325 493 495 496 2 23 305.106659 395.653320 23 305.106659 395.653320 0 0 0
+frameNumber initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3
+850 228 534 704 706 707 0 0 0 0 0 0 0 0 0 0
+878 11 326 496 497 498 1 19 616.311096 343.977783 0 0 0 0 0 0

@@ -4,8 +4,8 @@
 vector<guiObj> vecGuiObj;
 vector<vector<int>> integralImage;
 ofxCvContourFinder contourFinder;
-ofxCvGrayscaleImage contourImage;
-ofxCvColorImage contourImageColor;
+ofxCvGrayscaleImage contourImage,threshImgCvGray;
+ofxCvColorImage contourImageColor,bgSubCvCol;
 ofImage currentFrameOfImage,normImg, bgSub, threshRGB,avarageBackground;
 	
 //Variables used for mass testing
@@ -33,6 +33,8 @@ void testApp::setup(){
 	//ofxCvImages
 	contourImage.allocate(640,480);
 	contourImageColor.allocate(640,480);
+	bgSubCvCol.allocate(640,480);
+	threshImgCvGray.allocate(640,480);
 	//ofImages
 	currentFrameOfImage.allocate(640,480,OF_IMAGE_COLOR);
 	normImg.allocate(640,480,OF_IMAGE_COLOR);
@@ -54,17 +56,15 @@ void testApp::update(){
 	string sTemp;
 
 	vecGuiObj[1].nextFrame();
-	vecGuiObj[1].nextFrame();
-	vecGuiObj[1].nextFrame();
 	vecGuiObj[1].vidUpdate();
 
 	if(vecGuiObj[1].getCurrentFrame() > endFrame[testIterator] || vecGuiObj[1].getCurrentFrame() < startFrame[testIterator]){
 		testIterator++;
 		vecGuiObj[1].setVideo(movPath[testIterator]);
 		vecGuiObj[1].setFrame(startFrame[testIterator]);
-		vecGuiObj[1].play();
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 		avarageBackground = currentFrameOfImage;
+		printLegend = true;
 		if(testIterator >= testSize){
 			ofExit();
 		}
@@ -91,14 +91,14 @@ void testApp::update(){
 		loggingData.push_back(captureTime(lastTime));
 
 		//Segmentation: Binary Image
-		threshRGB = thresholdRGB(bgSub,30,30,30);
+		bgSubCvCol.setFromPixels(bgSub.getPixelsRef());
+		threshImgCvGray = bgSubCvCol;
+		threshImgCvGray.threshold(30);
 		loggingData.push_back(captureTime(lastTime));
 
 		//BLOB analasys
 		//vector<BLOB> blobs = BLOBanalysis(threshRGB);
-		contourImageColor.setFromPixels(threshRGB.getPixelsRef());
-		contourImage = contourImageColor;
-		contourFinder.findContours(contourImage,0,100,10,false,false);
+		contourFinder.findContours(threshImgCvGray,0,100,10,false,false);
 		loggingData.push_back(captureTime(lastTime));
 
 		loggingData.push_back(to_string(contourFinder.nBlobs));
@@ -118,7 +118,7 @@ void testApp::update(){
 		logData(logName[testIterator],loggingData,' ',printLegend,legend);
 
 		vecGuiObj[0].setImage(bgSub);
-		vecGuiObj[2].setImage(threshRGB);
+		vecGuiObj[2].setImgFromPixels(threshImgCvGray.getPixelsRef());
 		vecGuiObj[3].setImage(currentFrameOfImage);
 
 		printLegend = false;

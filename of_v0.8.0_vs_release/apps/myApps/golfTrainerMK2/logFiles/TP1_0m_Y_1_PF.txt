@@ -1,0 +1,2 @@
+frameNumber initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3
+1005 231 541 711 712 713 0 0 0 0 0 0 0 0 0 0
