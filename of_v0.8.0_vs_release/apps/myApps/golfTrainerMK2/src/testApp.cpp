@@ -10,16 +10,29 @@ ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
 
 //Values for initial ROI
 	//Test 2
-const int roiX = 50;
-const int roiY = 140;
-const int roiW = 500;
-const int roiH = 340;
+const int roiX = 120;
+const int roiY = 110;
+const int roiW = 375;
+const int roiH = 285;
 	//Test 1
 /*
 const int roiX = 50;
 const int roiY = 140;
 const int roiW = 500;
 const int roiH = 340;
+*/
+
+//BLOBclassefication values
+	//Test 2
+float bcRatio = 2.0f;
+int bcMaxSize = 25;
+int bcMinSize = 10;
+
+	//Test 1
+/*
+float bcRatio = 2.0f;
+int bcMaxSize = 25;
+int bcMinSize = 10;
 */
 	
 //Variables used for mass testing
@@ -115,7 +128,7 @@ void testApp::update(){
 		//BLOB analasys
 		contourFinder.findContours(threshImgCvGray,0,100,10,false,false);
 			//BLOB Clasification
-		BLOBclassification(contourFinder,1.5f,25,10);
+		BLOBclassification(contourFinder,bcRatio,bcMaxSize,bcMinSize);
 		loggingData.push_back(captureTime(lastTime));
 
 		loggingData.push_back(to_string(contourFinder.nBlobs));
