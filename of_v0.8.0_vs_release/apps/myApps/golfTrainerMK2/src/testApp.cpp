@@ -28,9 +28,9 @@ void testApp::setup(){
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,480,0),"../../images/testSquare.png",IMAGE));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,480,0),"../../images/testSquare.png",IMAGE));
 	//vecGuiObj[1].play();
-	vecGuiObj[1].setFrame(startFrame[testIterator]);
 	vecGuiObj[1].setVideo(movPath[testIterator]);
-
+	vecGuiObj[1].setFrame(startFrame[testIterator]);
+	
 	roiPositions.push_back(vector<pos>());
 	roiPositions[0].push_back(pos(0,0,0));
 	roiPositions[0].push_back(pos(99,99,0));
