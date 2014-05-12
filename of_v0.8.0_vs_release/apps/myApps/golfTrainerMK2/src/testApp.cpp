@@ -10,11 +10,11 @@ ofImage currentFrameOfImage,normImg, bgSub, threshRGB,avarageBackground;
 	
 //Variables used for mass testing
 int testIterator = 0;
-int testSize = 36;
-string logName [] = {   "TP1_0m_W_1_PF.txt" , "TP1_0m_W_2_PF.txt" , "TP1_0m_W_3_PF.txt" , "TP1_0m_W_4_PF.txt" , "TP1_0m_Y_1_PF.txt" , "TP1_0m_D_1_PF.txt" , "TP1_1m_W_1_PF.txt" , "TP1_1m_Y_1_PF.txt" , "TP1_1m_D_1_PF.txt" , "TP1_2m_W_1_PF.txt" , "TP1_2m_Y_1_PF.txt" , "TP1_2m_D_1_PF.txt" , "TP1_3m_W_1_PF.txt" , "TP1_3m_W_2_PF.txt" , "TP1_3m_W_3_PF.txt" , "TP1_3m_W_4_PF.txt" , "TP1_3m_Y_1_PF.txt" , "TP1_3m_D_1_PF.txt" , "TP1_4m_W_1_PF.txt" , "TP1_4m_Y_1_PF.txt" , "TP1_4m_D_1_PF.txt" , "TP1_5m_W_1_PF.txt" , "TP1_5m_Y_1_PF.txt" , "TP1_5m_D_1_PF.txt" , "TP1_6m_W_1_PF.txt" , "TP1_6m_Y_1_PF.txt" , "TP1_6m_D_1_PF.txt" , "TP1_7m_W_1_PF.txt" , "TP1_7m_Y_1_PF.txt" , "TP1_7m_D_1_PF.txt" , "TP1_8m_W_1_PF.txt" , "TP1_8m_Y_1_PF.txt" , "TP1_8m_D_1_PF.txt" , "TP1_9m_W_1_PF.txt" , "TP1_9m_Y_1_PF.txt" , "TP1_9m_D_1_PF.txt" };
-string movPath [] = {   "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_1m.mov" , "../../videos/test1/TP1_1m.mov" , "../../videos/test1/TP1_1m.mov" , "../../videos/test1/TP1_2m.mov" , "../../videos/test1/TP1_2m.mov" , "../../videos/test1/TP1_2m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_4m.mov" , "../../videos/test1/TP1_4m.mov" , "../../videos/test1/TP1_4m.mov" , "../../videos/test1/TP1_5m.mov" , "../../videos/test1/TP1_5m.mov" , "../../videos/test1/TP1_5m.mov" , "../../videos/test1/TP1_6m.mov" , "../../videos/test1/TP1_6m.mov" , "../../videos/test1/TP1_6m.mov" , "../../videos/test1/TP1_7m.mov" , "../../videos/test1/TP1_7m.mov" , "../../videos/test1/TP1_7m.mov" , "../../videos/test1/TP1_8m.mov" , "../../videos/test1/TP1_8m.mov" , "../../videos/test1/TP1_8m.mov" , "../../videos/test1/TP1_9m.mov" , "../../videos/test1/TP1_9m.mov" , "../../videos/test1/TP1_9m.mov" };
-int startFrame [] = {120,320,540,850,1005,1280,650,850,1065,220,390,485,50,130,230,325,420,505,290,395,475,155,420,520,390,485,595,250,490,580,225,430,520,215,425,520};
-int endFrame []= {280,515,730,990,1265,1470,800,965,1210,315,480,585,130,230,320,420,505,615,395,475,560,255,520,600,485,585,675,345,575,700,320,520,595,315,520,620};
+int testSize = 1;
+string logName [] = { "test.txt" };
+string movPath [] = { "../../videos/test2/ts1nochanges.mov" };
+int startFrame [] = {1};
+int endFrame []= {870};
 bool printLegend = true;
 string legend = "frameNumber initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3";
 
@@ -26,8 +26,9 @@ void testApp::setup(){
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,480,0),"../../images/testSquare.png",IMAGE));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,480,0),"../../images/testSquare.png",IMAGE));
 	
-	vecGuiObj[1].setFrame(startFrame[testIterator]);
 	vecGuiObj[1].setVideo(movPath[testIterator]);
+	vecGuiObj[1].setFrame(startFrame[testIterator]);
+	//vecGuiObj[1].play();
 
 	//Allovate alle ofImages for speedup in the update loop
 	//ofxCvImages
@@ -45,8 +46,6 @@ void testApp::setup(){
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 	avarageBackground = currentFrameOfImage;
-
-	//vecGuiObj[1].play();
 }
 
 //--------------------------------------------------------------
