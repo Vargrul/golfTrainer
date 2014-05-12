@@ -2,19 +2,13 @@
 
 #include "ofMain.h"
 #include "guiObj.h"
-#include "img2integralImg.h"
 #include "backgroundSub.h"
-#include "roiLimiter.h"
-#include "normalization.h"
-#include "gtThreshold.h"
 #include "ofxCvMain.h"
 #include "logging.h"
-//#include "BLOB.h"
-//#include "BLOBanalysis.h"
+#include "BLOBclassification.h"
 
 #include <iostream>
 #include <fstream>
-#include <array>
 
 class testApp : public ofBaseApp{
 	public:

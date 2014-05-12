@@ -7,16 +7,30 @@ ofxCvContourFinder contourFinder;
 ofxCvGrayscaleImage contourImage,threshImgCvGray;
 ofxCvColorImage contourImageColor,bgSubCvCol;
 ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
+
+//Values for initial ROI
+	//Test 2
+const int roiX = 50;
+const int roiY = 140;
+const int roiW = 500;
+const int roiH = 340;
+	//Test 1
+/*
+const int roiX = 50;
+const int roiY = 140;
+const int roiW = 500;
+const int roiH = 340;
+*/
 	
 //Variables used for mass testing
 int testIterator = 0;
-int testSize = 1;
-string logName [] = { "test.txt" };
-string movPath [] = { "../../videos/test2/ts1nochanges.mov" };
-int startFrame [] = {1};
-int endFrame []= {870};
+const int testSize = 1;
+const string logName [] = { "test.txt" };
+const string movPath [] = { "../../videos/test2/ts1_udden_h2l.mov" };
+const int startFrame [] = {1};
+const int endFrame []= {870};
 bool printLegend = true;
-string legend = "frameNumber initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3";
+const string legend = "frameNumber initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3";
 
 
 //--------------------------------------------------------------
@@ -32,18 +46,19 @@ void testApp::setup(){
 
 	//Allovate alle ofImages for speedup in the update loop
 	//ofxCvImages
-	contourImage.allocate(640,480);
-	contourImageColor.allocate(640,480);
-	bgSubCvCol.allocate(640,480);
-	threshImgCvGray.allocate(640,480);
+	contourImage.allocate(roiW,roiH);
+	contourImageColor.allocate(roiW,roiH);
+	bgSubCvCol.allocate(roiW,roiH);
+	threshImgCvGray.allocate(roiW,roiH);
 	//ofImages
-	currentFrameOfImage.allocate(640,480,OF_IMAGE_COLOR);
-	normImg.allocate(640,480,OF_IMAGE_COLOR);
-	bgSub.allocate(640,480,OF_IMAGE_COLOR);
-	avarageBackground.allocate(640,480,OF_IMAGE_COLOR);
+	currentFrameOfImage.allocate(680,480,OF_IMAGE_COLOR);
+	normImg.allocate(roiW,roiH,OF_IMAGE_COLOR);
+	bgSub.allocate(roiW,roiH,OF_IMAGE_COLOR);
+	avarageBackground.allocate(roiW,roiH,OF_IMAGE_COLOR);
 
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
+	currentFrameOfImage.crop(roiX,roiY,roiW,roiH);
 	avarageBackground = currentFrameOfImage;
 }
 
@@ -54,6 +69,8 @@ void testApp::update(){
 	string sTemp;
 
 	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
 	vecGuiObj[1].vidUpdate();
 
 	if(vecGuiObj[1].getCurrentFrame() > endFrame[testIterator] || vecGuiObj[1].getCurrentFrame() < startFrame[testIterator]){
@@ -61,6 +78,7 @@ void testApp::update(){
 		vecGuiObj[1].setVideo(movPath[testIterator]);
 		vecGuiObj[1].setFrame(startFrame[testIterator]);
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
+		currentFrameOfImage.crop(roiX,roiY,roiW,roiH);
 		avarageBackground = currentFrameOfImage;
 		printLegend = true;
 		if(testIterator >= testSize){
@@ -76,15 +94,15 @@ void testApp::update(){
 		//The flow of the program
 		//Input
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
-
+		currentFrameOfImage.crop(roiX,roiY,roiW,roiH);
 		loggingData.push_back(captureTime(lastTime));
 
 		//segmentation Background
-		 //Background Subtraction
+			//Background Subtraction
 		bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
 		loggingData.push_back(captureTime(lastTime));
 
-		 //Updating the avarage background
+		//Updating the avarage background
 		avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
 		loggingData.push_back(captureTime(lastTime));
 
@@ -96,6 +114,8 @@ void testApp::update(){
 
 		//BLOB analasys
 		contourFinder.findContours(threshImgCvGray,0,100,10,false,false);
+			//BLOB Clasification
+		BLOBclassification(contourFinder,2,25,5);
 		loggingData.push_back(captureTime(lastTime));
 
 		loggingData.push_back(to_string(contourFinder.nBlobs));
@@ -116,7 +136,7 @@ void testApp::update(){
 
 		vecGuiObj[0].setImage(bgSub);
 		vecGuiObj[2].setImgFromPixels(threshImgCvGray.getPixelsRef());
-		vecGuiObj[3].setImage(currentFrameOfImage);
+		vecGuiObj[3].setImgFromPixels(vecGuiObj[1].getPixelsRef());
 
 		printLegend = false;
 		//avarageBackground = currentFrameOfImage;
@@ -135,15 +155,16 @@ void testApp::draw(){
 	for(int i = 0 ; i < contourFinder.nBlobs ; i++){
 		ofSetColor(255,0,0);
 		ofFill();
-		ofCircle(contourFinder.blobs[i].centroid.x,contourFinder.blobs[i].centroid.y+480,1);
-		ofCircle(contourFinder.blobs[i].centroid.x+640,contourFinder.blobs[i].centroid.y+480,1);
+		ofCircle(contourFinder.blobs[i].centroid.x,contourFinder.blobs[i].centroid.y + 480,1);
+		ofCircle(contourFinder.blobs[i].centroid.x + 640 + roiX,contourFinder.blobs[i].centroid.y + 480 + roiY,1);
 		ofSetColor(0,255,0);
 		ofNoFill();
 
 		ofRectangle r = contourFinder.blobs.at(i).boundingRect;
 		r.y += 480;
 		ofRect(r);
-		r.x += 640;
+		r.y += roiY;
+		r.x += 640 + roiX;
 		ofRect(r);
 
 		ofSetColor(255,255,255);

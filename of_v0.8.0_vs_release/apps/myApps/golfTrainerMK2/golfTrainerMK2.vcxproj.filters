@@ -58,6 +58,9 @@
     <ClCompile Include="src\logging.cpp">
       <Filter>src\cppfiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\BLOBclassification.cpp">
+      <Filter>src\cppfiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -444,6 +447,9 @@
       <Filter>src\headers</Filter>
     </ClInclude>
     <ClInclude Include="src\logging.h">
+      <Filter>src\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BLOBclassification.h">
       <Filter>src\headers</Filter>
     </ClInclude>
   </ItemGroup>
