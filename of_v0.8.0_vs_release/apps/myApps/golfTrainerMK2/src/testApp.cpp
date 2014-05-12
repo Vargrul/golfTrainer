@@ -115,7 +115,7 @@ void testApp::update(){
 		//BLOB analasys
 		contourFinder.findContours(threshImgCvGray,0,100,10,false,false);
 			//BLOB Clasification
-		BLOBclassification(contourFinder,2,25,5);
+		BLOBclassification(contourFinder,1.5f,25,10);
 		loggingData.push_back(captureTime(lastTime));
 
 		loggingData.push_back(to_string(contourFinder.nBlobs));
