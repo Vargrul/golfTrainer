@@ -13,7 +13,7 @@ string legend = "initialPart backgroundSubtraction averageBackgroundUpdate thres
 //--------------------------------------------------------------
 void testApp::setup(){
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,0,0),"../../images/testImage.png",IMAGE));
-	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,0,0),"../../videos/5secHighToLowTest2(1).mov",VIDEO));
+	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,0,0),"../../videos/test2/ts1nochanges.mov",VIDEO));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(0,480,0),"../../images/testSquare.png",IMAGE));
 	vecGuiObj.insert(vecGuiObj.end(),guiObj(pos(640,480,0),"../../images/testSquare.png",IMAGE));
 	//vecGuiObj[1].play();
