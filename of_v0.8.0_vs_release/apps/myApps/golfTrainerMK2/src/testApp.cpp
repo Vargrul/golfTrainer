@@ -6,7 +6,7 @@ vector<vector<int>> integralImage;
 ofxCvContourFinder contourFinder;
 ofxCvGrayscaleImage contourImage,threshImgCvGray;
 ofxCvColorImage contourImageColor,bgSubCvCol;
-ofImage currentFrameOfImage,normImg, bgSub, threshRGB,avarageBackground;
+ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
 	
 //Variables used for mass testing
 int testIterator = 0;
@@ -40,7 +40,6 @@ void testApp::setup(){
 	currentFrameOfImage.allocate(640,480,OF_IMAGE_COLOR);
 	normImg.allocate(640,480,OF_IMAGE_COLOR);
 	bgSub.allocate(640,480,OF_IMAGE_COLOR);
-	threshRGB.allocate(640,480,OF_IMAGE_COLOR);
 	avarageBackground.allocate(640,480,OF_IMAGE_COLOR);
 
 
@@ -96,7 +95,6 @@ void testApp::update(){
 		loggingData.push_back(captureTime(lastTime));
 
 		//BLOB analasys
-		//vector<BLOB> blobs = BLOBanalysis(threshRGB);
 		contourFinder.findContours(threshImgCvGray,0,100,10,false,false);
 		loggingData.push_back(captureTime(lastTime));
 
