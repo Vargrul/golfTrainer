@@ -27,6 +27,8 @@ void logToConsole(vector<string> ld, char dl, bool wlg, string lg){
 	cout << endl;
 }
 
-string captureTime(clock_t lt){
-	return to_string((clock() - lt) / (CLOCKS_PER_SEC / 1000));
+string captureTime(clock_t &lt){
+	string temp = to_string((clock() - lt) / (CLOCKS_PER_SEC / 1000));
+	lt = clock();
+	return temp;
 }

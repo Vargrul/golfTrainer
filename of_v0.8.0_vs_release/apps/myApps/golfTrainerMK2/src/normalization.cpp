@@ -1,5 +1,15 @@
 #include "normalization.h"
 
+ofImage normalizeImage(ofImage inImg){
+	ofImage outImg = inImg;
+	for(int p = 0;p < inImg.getHeight();p++){
+		for(int q = 0; q < inImg.getWidth();q++){
+			outImg.setColor(q, p, RGB2rgb(inImg.getColor(q,p)));
+		}
+	}
+	return outImg;
+}
+
 ofImage normalizeROI(vector<vector<pos>> i, ofImage inROI){
 	//Output image
 	ofImage outROI=inROI;
@@ -17,8 +27,8 @@ ofImage normalizeROI(vector<vector<pos>> i, ofImage inROI){
 		//Loop through each pixel in the ROI and convert pixels to chromatic rg
 		for(int p = 0;p < ROIheight;p++){
 			for(int q = 0; q < ROIwidth;q++){
-				pos tempPos(upperleft.getX()+q,upperleft.getY()+p,0);
-				outROI.setColor(tempPos.getX(), tempPos.getY(), RGB2rgb(tempPos, inROI));
+				pos inColPos(upperleft.getX()+q,upperleft.getY()+p,0);
+				outROI.setColor(inColPos.getX(), inColPos.getY(), RGB2rgb(inROI.getColor(inColPos.getX(),inColPos.getY())));
 			}
 		}
 	}
@@ -26,15 +36,13 @@ ofImage normalizeROI(vector<vector<pos>> i, ofImage inROI){
 	return outROI;
 }
 
-ofColor RGB2rgb(pos i, ofImage inROI){
-	//Get RBG of pixel position i
-	ofColor temp = inROI.getColor(i.getX(),i.getY());
+ofColor RGB2rgb(ofColor inCol){
 	//convert to rg -> r = \frac{R}{R+G+B}  g = \frac{G}{R+G+B}  b = \frac{B}{R+G+B}
 	//we only need the r and g values since r+g+b=1 so we can calculate b value when needed
-	ofColor outCol = temp;
+	ofColor outCol = inCol;
 
-	if(temp.r != 0)outCol.r = (unsigned char)(((float)temp.r/((float)temp.r + (float)temp.g + (float)temp.b))*255.0f);
-	if(temp.g != 0)outCol.g = (unsigned char)(((float)temp.g/((float)temp.r + (float)temp.g + (float)temp.b))*255.0f);
+	if(inCol.r != 0)outCol.r = (unsigned char)(((float)inCol.r/((float)inCol.r + (float)inCol.g + (float)inCol.b))*255.0f);
+	if(inCol.g != 0)outCol.g = (unsigned char)(((float)inCol.g/((float)inCol.r + (float)inCol.g + (float)inCol.b))*255.0f);
 	outCol.b = (unsigned char)abs(((int)outCol.r + (int)outCol.g) - 255);
 
 	//cout << "red: " << (int)outCol.r << " green: " << (int)outCol.g << " blue: " << (int)outCol.g << endl;

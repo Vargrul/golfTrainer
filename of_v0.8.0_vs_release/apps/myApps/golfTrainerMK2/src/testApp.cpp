@@ -10,17 +10,17 @@ ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
 
 //Values for initial ROI
 	//Test 2
+/*
 const int roiX = 120;
 const int roiY = 110;
 const int roiW = 375;
 const int roiH = 285;
+*/
 	//Test 1
-/*
 const int roiX = 50;
 const int roiY = 140;
 const int roiW = 500;
 const int roiH = 340;
-*/
 
 //BLOBclassefication values
 	//Test 2
@@ -39,11 +39,11 @@ int bcMinSize = 10;
 int testIterator = 0;
 const int testSize = 1;
 const string logName [] = { "test.txt" };
-const string movPath [] = { "../../videos/test2/ts1_udden_h2l.mov" };
+const string movPath [] = { "../../videos/test1/TP1_6m.mov" };
 const int startFrame [] = {1};
 const int endFrame []= {870};
 bool printLegend = true;
-const string legend = "frameNumber initialPart backgroundSubtraction averageBackgroundUpdate thresholding blobdetection nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3";
+const string legend = "frameNumber initialPart normalization backgroundSubtraction averageBackgroundUpdate thresholding BLOBdetection BLOBclassification nrOfBlobs blobArea_1 centroidX_1 controidY_1 blobArea_2 centroidX_2 controidY_2 blobArea_3 centroidX_3 controidY_3";
 
 
 //--------------------------------------------------------------
@@ -72,7 +72,7 @@ void testApp::setup(){
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 	currentFrameOfImage.crop(roiX,roiY,roiW,roiH);
-	avarageBackground = currentFrameOfImage;
+	avarageBackground = normalizeImage(currentFrameOfImage);
 }
 
 //--------------------------------------------------------------
@@ -92,7 +92,7 @@ void testApp::update(){
 		vecGuiObj[1].setFrame(startFrame[testIterator]);
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 		currentFrameOfImage.crop(roiX,roiY,roiW,roiH);
-		avarageBackground = currentFrameOfImage;
+		avarageBackground = normalizeImage(currentFrameOfImage);
 		printLegend = true;
 		if(testIterator >= testSize){
 			ofExit();
@@ -110,13 +110,17 @@ void testApp::update(){
 		currentFrameOfImage.crop(roiX,roiY,roiW,roiH);
 		loggingData.push_back(captureTime(lastTime));
 
+		//normalization
+		normImg = normalizeImage(currentFrameOfImage);
+		loggingData.push_back(captureTime(lastTime));
+
 		//segmentation Background
 			//Background Subtraction
-		bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
+		bgSub = gt_backgroundSubtraction(avarageBackground,normImg);
 		loggingData.push_back(captureTime(lastTime));
 
 		//Updating the avarage background
-		avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
+		avarageBackground = gt_updateReference(avarageBackground, normImg, 0.8f);
 		loggingData.push_back(captureTime(lastTime));
 
 		//Segmentation: Binary Image
@@ -127,6 +131,7 @@ void testApp::update(){
 
 		//BLOB analasys
 		contourFinder.findContours(threshImgCvGray,0,100,10,false,false);
+		loggingData.push_back(captureTime(lastTime));
 			//BLOB Clasification
 		BLOBclassification(contourFinder,bcRatio,bcMaxSize,bcMinSize);
 		loggingData.push_back(captureTime(lastTime));
@@ -147,7 +152,7 @@ void testApp::update(){
 
 		logData(logName[testIterator],loggingData,' ',printLegend,legend);
 
-		vecGuiObj[0].setImage(bgSub);
+		vecGuiObj[0].setImage(normImg);
 		vecGuiObj[2].setImgFromPixels(threshImgCvGray.getPixelsRef());
 		vecGuiObj[3].setImgFromPixels(vecGuiObj[1].getPixelsRef());
 
@@ -188,6 +193,11 @@ void testApp::draw(){
 	ofDrawBitmapStringHighlight("Segmentation: Foreground",200,20);
 	ofDrawBitmapStringHighlight("Thresholded Image (with blobs)",160,500);
 	ofDrawBitmapStringHighlight("Video feed with blobs",870,500);
+
+	//Draws initialROI
+	ofSetColor(255,0,0);
+	ofRect(640 + roiX, 480+roiY, 0, roiW, roiH);
+	ofSetColor(255,255,255);
 }
 
 //--------------------------------------------------------------

@@ -1,6 +1,6 @@
 #include "BLOBclassification.h"
 
-void BLOBclassification(ofxCvContourFinder& contIn, float check_Ratio, int max_nPts, int min_nPts){
+void BLOBclassification(ofxCvContourFinder &contIn, float check_Ratio, int max_nPts, int min_nPts){
 	//Check the ratio of height and width and Area
 	for(int i = 0 ; i < contIn.nBlobs ; i++){
 		

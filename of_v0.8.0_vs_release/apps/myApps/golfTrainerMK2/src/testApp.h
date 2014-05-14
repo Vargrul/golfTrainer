@@ -6,6 +6,7 @@
 #include "ofxCvMain.h"
 #include "logging.h"
 #include "BLOBclassification.h"
+#include "normalization.h"
 
 #include <iostream>
 #include <fstream>
