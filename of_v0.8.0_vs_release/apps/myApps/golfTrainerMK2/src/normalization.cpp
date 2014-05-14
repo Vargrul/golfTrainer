@@ -44,6 +44,8 @@ ofColor RGB2rgb(ofColor inCol){
 	if(inCol.r != 0)outCol.r = (unsigned char)(((float)inCol.r/((float)inCol.r + (float)inCol.g + (float)inCol.b))*255.0f);
 	if(inCol.g != 0)outCol.g = (unsigned char)(((float)inCol.g/((float)inCol.r + (float)inCol.g + (float)inCol.b))*255.0f);
 	outCol.b = (unsigned char)abs(((int)outCol.r + (int)outCol.g) - 255);
+	//The intensity is getting stored in the alpha channel
+	outCol.a = (inCol.r + inCol.g + inCol.b)/3;
 
 	//cout << "red: " << (int)outCol.r << " green: " << (int)outCol.g << " blue: " << (int)outCol.g << endl;
 
