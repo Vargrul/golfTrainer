@@ -1,18 +1,38 @@
 #include "normalization.h"
 
 ofImage normalizeImage(ofImage inImg){
-	ofImage outImg = inImg;
+	ofImage outImg;
+	outImg.allocate(inImg.getWidth(),inImg.getHeight(),OF_IMAGE_COLOR_ALPHA);
 	for(int p = 0;p < inImg.getHeight();p++){
 		for(int q = 0; q < inImg.getWidth();q++){
 			outImg.setColor(q, p, RGB2rgb(inImg.getColor(q,p)));
 		}
 	}
+	//Normalization of Alpha channel
+		//http://en.wikipedia.org/wiki/Normalization_(image_processing)
+	int min = 0, max = 0, newMin = 0, newMax = 255;
+
+	for(int x = 0 ; x < inImg.getWidth() ; x++){
+		for(int y = 0 ; y < inImg.getHeight() ; y++){
+			if(min > outImg.getColor(x,y).a) min = outImg.getColor(x,y).a;
+			if(max < outImg.getColor(x,y).a) max = outImg.getColor(x,y).a;
+		}
+	}
+	for(int x = 0 ; x < inImg.getWidth() ; x++){
+		for(int y = 0 ; y < inImg.getHeight() ; y++){
+			ofColor temp = outImg.getColor(x,y);
+			temp.a = (outImg.getColor(x,y).a - min)*((newMax - newMin)/(max - min))+newMin;
+			outImg.setColor(x,y,temp);
+		}
+	}
+
 	return outImg;
 }
 
 ofImage normalizeROI(vector<vector<pos>> i, ofImage inROI){
 	//Output image
-	ofImage outROI=inROI;
+	ofImage outROI;
+	outROI.allocate(inROI.getWidth(),inROI.getHeight(),OF_IMAGE_COLOR_ALPHA);
 
 	//Loop through each position pair
 	for(int j = 0; j < i.size(); j++){
@@ -45,10 +65,22 @@ ofColor RGB2rgb(ofColor inCol){
 	if(inCol.g != 0)outCol.g = (unsigned char)(((float)inCol.g/((float)inCol.r + (float)inCol.g + (float)inCol.b))*255.0f);
 	outCol.b = (unsigned char)abs(((int)outCol.r + (int)outCol.g) - 255);
 	//The intensity is getting stored in the alpha channel
-	outCol.a = (inCol.r + inCol.g + inCol.b)/3;
+		
 
-	//cout << "red: " << (int)outCol.r << " green: " << (int)outCol.g << " blue: " << (int)outCol.g << endl;
+	int tempR,tempG,tempB;
 
+	if(inCol.r < 1)tempR = 1; else tempR = inCol.r;
+	if(inCol.g < 1)tempG = 1; else tempG = inCol.g;
+	if(inCol.b < 1)tempB = 1; else tempB = inCol.b;
+
+	float f1 = (float)MIN(tempR,tempG)/(float)MAX(tempR,tempG);
+	float f2 = (float)MIN(tempG,tempB)/(float)MAX(tempG,tempB);
+	float f3 = (float)MIN(tempB,tempR)/(float)MAX(tempB,tempR);
+
+	//cout << (f1+f2+f3)/3 << " " << ((f1+f2+f3)/3)*255 << endl;
+
+	outCol.a = (unsigned char)(((f1+f2+f3)/3)*255);
+	if(outCol.a  < 100) outCol.a = (unsigned char)100;
 	//return the new rg color
 	return outCol;
 }

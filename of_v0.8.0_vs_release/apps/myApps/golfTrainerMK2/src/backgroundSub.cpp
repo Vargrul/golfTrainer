@@ -7,6 +7,7 @@ ofImage gt_averageBackground(vector<ofImage> frames){
 	vector<vector<float> > tempRed(imgWidth, vector<float>(imgHeight));
 	vector<vector<float> > tempGreen(imgWidth, vector<float>(imgHeight));
 	vector<vector<float> > tempBlue(imgWidth, vector<float>(imgHeight));
+	vector<vector<float> > tempIntens(imgWidth, vector<float>(imgHeight));
 	ofImage average = frames[0];
 
 	for (int i=0; i<frames.size();i++){
@@ -15,12 +16,13 @@ ofImage gt_averageBackground(vector<ofImage> frames){
 				tempRed[x][y] += frames[i].getColor(x,y).r;
 				tempGreen[x][y] += frames[i].getColor(x,y).g;
 				tempBlue[x][y] += frames[i].getColor(x,y).b;
+				tempIntens[x][y] += frames[i].getColor(x,y).a;
 			}
 		}
 	}
 	for(int x=0; x<frames[0].getWidth();x++){
 		for(int y=0; y<frames[0].getHeight();y++){
-			average.setColor(x,y,ofColor((tempRed[x][y]/frames.size()),(tempGreen[x][y]/frames.size()),(tempBlue[x][y]/frames.size())));
+			average.setColor(x,y,ofColor((tempRed[x][y]/frames.size()),(tempGreen[x][y]/frames.size()),(tempBlue[x][y]/frames.size()),(tempIntens[x][y]/frames.size())));
 		}
 	}
 	return average;
@@ -30,7 +32,7 @@ ofImage gt_backgroundSubtraction(ofImage backgroundImg, ofImage currentFrame){
 	ofImage foregroundImg = currentFrame;
 	for(int x=0; x<backgroundImg.getWidth();x++){
 		for(int y=0; y<backgroundImg.getHeight();y++){
-			foregroundImg.setColor(x,y,ofColor(ABS(currentFrame.getColor(x,y).r - backgroundImg.getColor(x,y).r),ABS(currentFrame.getColor(x,y).g - backgroundImg.getColor(x,y).g),ABS(currentFrame.getColor(x,y).b - backgroundImg.getColor(x,y).b)));
+			foregroundImg.setColor(x,y,ofColor(ABS(currentFrame.getColor(x,y).r - backgroundImg.getColor(x,y).r),ABS(currentFrame.getColor(x,y).g - backgroundImg.getColor(x,y).g),ABS(currentFrame.getColor(x,y).b - backgroundImg.getColor(x,y).b),ABS(currentFrame.getColor(x,y).a - backgroundImg.getColor(x,y).a)));
 		}
 	}
 	return foregroundImg;
@@ -40,7 +42,7 @@ ofImage gt_updateReference(ofImage backgroundImg, ofImage currentFrame, float gt
 	ofImage newRef = currentFrame;
 	for(int x=0; x<backgroundImg.getWidth();x++){
 		for(int y=0; y<backgroundImg.getHeight();y++){
-			newRef.setColor(x,y,ofColor(gt_alpha*backgroundImg.getColor(x,y).r+(1-gt_alpha)*currentFrame.getColor(x,y).r,gt_alpha*backgroundImg.getColor(x,y).g+(1-gt_alpha)*currentFrame.getColor(x,y).g,gt_alpha*backgroundImg.getColor(x,y).b+(1-gt_alpha)*currentFrame.getColor(x,y).b));
+			newRef.setColor(x,y,ofColor(gt_alpha*backgroundImg.getColor(x,y).r+(1-gt_alpha)*currentFrame.getColor(x,y).r,gt_alpha*backgroundImg.getColor(x,y).g+(1-gt_alpha)*currentFrame.getColor(x,y).g,gt_alpha*backgroundImg.getColor(x,y).b+(1-gt_alpha)*currentFrame.getColor(x,y).b,gt_alpha*backgroundImg.getColor(x,y).a+(1-gt_alpha)*currentFrame.getColor(x,y).a));
 		}
 	}
 	return newRef;

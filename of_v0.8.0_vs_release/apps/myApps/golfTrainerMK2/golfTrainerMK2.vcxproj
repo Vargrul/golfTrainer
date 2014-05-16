@@ -106,6 +106,7 @@
     <ClCompile Include="src\img2integralImg.cpp" />
     <ClCompile Include="src\logging.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\motionPrediction.cpp" />
     <ClCompile Include="src\normalization.cpp" />
     <ClCompile Include="src\pos.cpp" />
     <ClCompile Include="src\roiLimiter.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="src\guiObj.h" />
     <ClInclude Include="src\img2integralImg.h" />
     <ClInclude Include="src\logging.h" />
+    <ClInclude Include="src\motionPrediction.h" />
     <ClInclude Include="src\normalization.h" />
     <ClInclude Include="src\pos.h" />
     <ClInclude Include="src\roiLimiter.h" />

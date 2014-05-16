@@ -61,6 +61,9 @@
     <ClCompile Include="src\BLOBclassification.cpp">
       <Filter>src\cppfiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\motionPrediction.cpp">
+      <Filter>src\cppfiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -450,6 +453,9 @@
       <Filter>src\headers</Filter>
     </ClInclude>
     <ClInclude Include="src\BLOBclassification.h">
+      <Filter>src\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\motionPrediction.h">
       <Filter>src\headers</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,12 +10,11 @@ ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
 
 //Values for initial ROI
 	//Test 2
-/*
-const int roiX = 120;
+/*const int roiX = 120;
 const int roiY = 110;
 const int roiW = 375;
-const int roiH = 285;
-*/
+const int roiH = 285;*/
+
 	//Test 1
 const int roiX = 50;
 const int roiY = 140;
@@ -39,7 +38,7 @@ int bcMinSize = 10;
 int testIterator = 0;
 const int testSize = 1;
 const string logName [] = { "test.txt" };
-const string movPath [] = { "../../videos/test1/TP1_6m.mov" };
+const string movPath [] = { "../../videos/test1/TP1_5m.mov" };
 const int startFrame [] = {1};
 const int endFrame []= {870};
 bool printLegend = true;
@@ -65,9 +64,9 @@ void testApp::setup(){
 	threshImgCvGray.allocate(roiW,roiH);
 	//ofImages
 	currentFrameOfImage.allocate(680,480,OF_IMAGE_COLOR);
-	normImg.allocate(roiW,roiH,OF_IMAGE_COLOR);
-	bgSub.allocate(roiW,roiH,OF_IMAGE_COLOR);
-	avarageBackground.allocate(roiW,roiH,OF_IMAGE_COLOR);
+	normImg.allocate(roiW,roiH,OF_IMAGE_COLOR_ALPHA);
+	bgSub.allocate(roiW,roiH,OF_IMAGE_COLOR_ALPHA);
+	avarageBackground.allocate(roiW,roiH,OF_IMAGE_COLOR_ALPHA);
 
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
@@ -154,7 +153,15 @@ void testApp::update(){
 
 		vecGuiObj[0].setImage(normImg);
 		vecGuiObj[2].setImgFromPixels(threshImgCvGray.getPixelsRef());
-		vecGuiObj[3].setImgFromPixels(vecGuiObj[1].getPixelsRef());
+		//vecGuiObj[3].setImgFromPixels(vecGuiObj[1].getPixelsRef());
+		ofImage segInten;
+		segInten.allocate(roiW,roiH,OF_IMAGE_GRAYSCALE);
+		for(int i = 0; i < bgSub.width ; i++){
+			for(int ii = 0; ii < bgSub.height; ii++){
+				segInten.setColor(i,ii,ofColor(normImg.getColor(i,ii).a));
+			}
+		}
+		vecGuiObj[3].setImgFromPixels(segInten);
 
 		printLegend = false;
 		//avarageBackground = currentFrameOfImage;
@@ -196,7 +203,8 @@ void testApp::draw(){
 
 	//Draws initialROI
 	ofSetColor(255,0,0);
-	ofRect(640 + roiX, 480+roiY, 0, roiW, roiH);
+	ofNoFill;
+	//ofRect(640 + roiX, 480+roiY, 0, roiW, roiH);
 	ofSetColor(255,255,255);
 }
 
