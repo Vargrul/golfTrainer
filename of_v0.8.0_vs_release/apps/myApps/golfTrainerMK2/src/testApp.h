@@ -7,6 +7,7 @@
 #include "logging.h"
 #include "BLOBclassification.h"
 #include "normalization.h"
+#include "motionPrediction.h"
 
 #include <iostream>
 #include <fstream>

@@ -8,6 +8,8 @@ ofxCvGrayscaleImage contourImage,threshImgCvGray;
 ofxCvColorImage contourImageColor,bgSubCvCol;
 ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
 
+kfValuesFloat kfInput;
+
 //Values for initial ROI
 	//Test 2
 /*const int roiX = 120;
@@ -71,7 +73,10 @@ void testApp::setup(){
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 	currentFrameOfImage.crop(roiX,roiY,roiW,roiH);
-	avarageBackground = normalizeImage(currentFrameOfImage);
+	avarageBackground = currentFrameOfImage;
+	//avarageBackground = normalizeImage(currentFrameOfImage);
+
+	kfInput = kfInitValuesFloat();
 }
 
 //--------------------------------------------------------------
@@ -103,6 +108,8 @@ void testApp::update(){
 		loggingData.push_back(to_string(vecGuiObj[1].getCurrentFrame()));
 	
 
+		cout << kfInput.XkProj << "    " << kfInput.PkProj << "    " << kfInput.Kk << "    " << kfInput.Xk << "    " << kfInput.Pk << endl;
+		if(contourFinder.nBlobs > 0)kfInput = kfTimeUpdateFloat(kfInput);
 		//The flow of the program
 		//Input
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
@@ -115,11 +122,11 @@ void testApp::update(){
 
 		//segmentation Background
 			//Background Subtraction
-		bgSub = gt_backgroundSubtraction(avarageBackground,normImg);
+		bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
 		loggingData.push_back(captureTime(lastTime));
 
 		//Updating the avarage background
-		avarageBackground = gt_updateReference(avarageBackground, normImg, 0.8f);
+		avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
 		loggingData.push_back(captureTime(lastTime));
 
 		//Segmentation: Binary Image
@@ -150,6 +157,16 @@ void testApp::update(){
 		}
 
 		logData(logName[testIterator],loggingData,' ',printLegend,legend);
+
+		if(contourFinder.nBlobs > 0)cout << contourFinder.blobs[0].centroid.x << " " << contourFinder.blobs[0].centroid.y << endl;
+
+		if(contourFinder.nBlobs > 0){ 
+			kfInput.Zk = contourFinder.blobs[0].centroid.x;
+		}
+
+		if(contourFinder.nBlobs > 0)kfInput = kfMeasurementUpdatFloat(kfInput);
+		
+
 
 		vecGuiObj[0].setImage(normImg);
 		vecGuiObj[2].setImgFromPixels(threshImgCvGray.getPixelsRef());
@@ -195,6 +212,12 @@ void testApp::draw(){
 		ofSetColor(255,255,255);
 	}
 
+	ofSetColor(0,0,255);
+	ofFill();
+	if(contourFinder.nBlobs > 0)ofCircle(kfInput.XkProj+640+roiX,roiY,5);
+	ofSetColor(0,255,0);
+	ofNoFill();
+
 	//Draws the indentifier Text
 	ofDrawBitmapStringHighlight("Video Feed",920,20);
 	ofDrawBitmapStringHighlight("Segmentation: Foreground",200,20);
@@ -203,7 +226,7 @@ void testApp::draw(){
 
 	//Draws initialROI
 	ofSetColor(255,0,0);
-	ofNoFill;
+	ofNoFill();
 	//ofRect(640 + roiX, 480+roiY, 0, roiW, roiH);
 	ofSetColor(255,255,255);
 }
