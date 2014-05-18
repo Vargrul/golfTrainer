@@ -8,6 +8,9 @@ ofxCvGrayscaleImage contourImage,threshImgCvGray;
 ofxCvColorImage contourImageColor,bgSubCvCol;
 ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
 
+pos lastPos (0,0,0);
+float ballVelocity = 0;
+
 kfValuesFloat kfInput;
 
 //Values for initial ROI
@@ -109,7 +112,7 @@ void testApp::update(){
 	
 
 		cout << kfInput.XkProj << "    " << kfInput.PkProj << "    " << kfInput.Kk << "    " << kfInput.Xk << "    " << kfInput.Pk << endl;
-		if(contourFinder.nBlobs > 0)kfInput = kfTimeUpdateFloat(kfInput);
+		if(contourFinder.nBlobs > 0 && ballVelocity != 0)kfInput = kfTimeUpdateFloat(kfInput,ballVelocity);
 		//The flow of the program
 		//Input
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
@@ -157,6 +160,11 @@ void testApp::update(){
 		}
 
 		logData(logName[testIterator],loggingData,' ',printLegend,legend);
+		
+		
+		if(lastPos.getX() != 0) ballVelocity = BLOBcalculateVelocity(lastPos,pos((int)contourFinder.blobs[0].centroid.x,0,0),1);
+		else ballVelocity = 0;
+		if(contourFinder.nBlobs > 0)lastPos = pos((int)contourFinder.blobs[0].centroid.x,0,0);
 
 		if(contourFinder.nBlobs > 0)cout << contourFinder.blobs[0].centroid.x << " " << contourFinder.blobs[0].centroid.y << endl;
 
@@ -164,7 +172,7 @@ void testApp::update(){
 			kfInput.Zk = contourFinder.blobs[0].centroid.x;
 		}
 
-		if(contourFinder.nBlobs > 0)kfInput = kfMeasurementUpdatFloat(kfInput);
+		if(contourFinder.nBlobs > 0 && ballVelocity != 0)kfInput = kfMeasurementUpdatFloat(kfInput);
 		
 
 

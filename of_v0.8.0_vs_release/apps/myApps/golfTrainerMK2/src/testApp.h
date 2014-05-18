@@ -8,6 +8,7 @@
 #include "BLOBclassification.h"
 #include "normalization.h"
 #include "motionPrediction.h"
+#include "BLOBanalysis.h"
 
 #include <iostream>
 #include <fstream>

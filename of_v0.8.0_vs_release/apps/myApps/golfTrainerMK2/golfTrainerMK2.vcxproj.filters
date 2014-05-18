@@ -25,9 +25,6 @@
     <ClCompile Include="src\backgroundSub.cpp">
       <Filter>src\cppfiles</Filter>
     </ClCompile>
-    <ClCompile Include="src\BLOB.cpp">
-      <Filter>src\cppfiles</Filter>
-    </ClCompile>
     <ClCompile Include="src\BLOBanalysis.cpp">
       <Filter>src\cppfiles</Filter>
     </ClCompile>
@@ -420,9 +417,6 @@
       <Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\video</Filter>
     </ClInclude>
     <ClInclude Include="src\backgroundSub.h">
-      <Filter>src\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BLOB.h">
       <Filter>src\headers</Filter>
     </ClInclude>
     <ClInclude Include="src\BLOBanalysis.h">

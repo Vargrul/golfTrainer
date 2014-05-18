@@ -2,8 +2,10 @@
 
 #include "testApp.h"
 #include "pos.h"
-#include "BLOB.h"
 
+float BLOBcalculateVelocity(pos oldPos, pos newPos, int deltaTime);
+
+/*
 //The main function that takes in the binary input image and performs
 // the connected componant analysis by calling other functions. Output is
 // a vector of BLOBs.
@@ -17,3 +19,4 @@ void burnPixel(int x, int y, ofImage& inputImg, BLOB& blob);
 //Checks the neighborhood for non-black pixels. Then stores then pixel and burns it
 // Recursive
 	void neighborCheck(int x, int y, ofImage& inputImg, BLOB& blob);
+	*/

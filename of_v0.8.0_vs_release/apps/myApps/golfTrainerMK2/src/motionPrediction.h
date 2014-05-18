@@ -50,7 +50,7 @@ struct kfValuesFloat{
 kfValues4x4 kfInitValues4x4();
 kfValuesFloat kfInitValuesFloat();
 kfValues4x4 kfTimeUpdate4x4(kfValues4x4 inValues);
-kfValuesFloat kfTimeUpdateFloat(kfValuesFloat inValues);
+kfValuesFloat kfTimeUpdateFloat(kfValuesFloat inValues, float velocity);
 kfValues4x4 kfMeasurementUpdate4x4(kfValues4x4 inValues);
 kfValuesFloat kfMeasurementUpdatFloat(kfValuesFloat inValues);
 ofMatrix4x4 kfMatrixAddition4x4(ofMatrix4x4 a, ofMatrix4x4 b);

@@ -98,7 +98,6 @@
     <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvImage.cpp" />
     <ClCompile Include="..\..\..\addons\ofxOpenCv\src\ofxCvShortImage.cpp" />
     <ClCompile Include="src\backgroundSub.cpp" />
-    <ClCompile Include="src\BLOB.cpp" />
     <ClCompile Include="src\BLOBanalysis.cpp" />
     <ClCompile Include="src\BLOBclassification.cpp" />
     <ClCompile Include="src\gtThreshold.cpp" />
@@ -207,7 +206,6 @@
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\video\tracking.hpp" />
     <ClInclude Include="..\..\..\addons\ofxOpenCv\libs\opencv\include\opencv2\video\video.hpp" />
     <ClInclude Include="src\backgroundSub.h" />
-    <ClInclude Include="src\BLOB.h" />
     <ClInclude Include="src\BLOBanalysis.h" />
     <ClInclude Include="src\BLOBclassification.h" />
     <ClInclude Include="src\gtThreshold.h" />

@@ -1,5 +1,13 @@
 #include "BLOBanalysis.h"
 
+float BLOBcalculateVelocity(pos oldPos, pos newPos, int deltaTime){
+
+	float s = sqrtf(pow((newPos.getX()-oldPos.getX()),2)+pow(newPos.getY()-oldPos.getY(),2));
+
+	float outVelocity = s/deltaTime;
+	return outVelocity;
+}
+/*
 vector<BLOB> BLOBanalysis(ofImage inputImg){
 	//Vector for holding BLOBs
 	vector<BLOB> BLOBlist;
@@ -61,4 +69,4 @@ void neighborCheck(int x, int y, ofImage& inputImg, BLOB& blob){
 		neighborCheck(x, y-1, inputImg, blob);
 	}
 	return;
-}
+}*/

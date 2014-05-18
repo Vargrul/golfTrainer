@@ -73,10 +73,10 @@ kfValues4x4 kfTimeUpdate4x4(kfValues4x4 inValues){
 	return outValues;
 };
 
-kfValuesFloat kfTimeUpdateFloat(kfValuesFloat inValues){
+kfValuesFloat kfTimeUpdateFloat(kfValuesFloat inValues, float velocity){
 	kfValuesFloat outValues = inValues;
 	//Project the state ahead
-	outValues.XkProj = inValues.Xk;// + inValues.Wk;
+	outValues.XkProj = inValues.Xk + velocity;// + inValues.Wk;
 
 	//Project the error covariance ahed
 	outValues.PkProj = inValues.Pk + inValues.Q;
