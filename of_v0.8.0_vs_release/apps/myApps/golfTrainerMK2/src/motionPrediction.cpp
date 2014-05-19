@@ -10,12 +10,11 @@ pos posPredictionSimple(pos lastPos, pos newPos, pos& uncertaintyOut){
 	y = newPos.getY() + (newPos.getY() - lastPos.getY());
 	z = newPos.getZ() + (newPos.getZ() - lastPos.getZ());
 
-	uncertaintyOutX = newPos.getX() - lastPos.getX();
-	if(uncertaintyOutX < 10) uncertaintyOutX = 20;
-	uncertaintyOutY = newPos.getY() - lastPos.getY();
-	if(uncertaintyOutY < 10) uncertaintyOutY = 20;
-	uncertaintyOutZ = newPos.getZ() - lastPos.getZ();
-	if(uncertaintyOutZ < 10) uncertaintyOutZ = 20;
+	uncertaintyOutX = ABS(newPos.getX() - lastPos.getX());
+	if(uncertaintyOutX < 5) uncertaintyOutX = 5;
+	uncertaintyOutY = ABS(newPos.getY() - lastPos.getY());
+	if(uncertaintyOutY < 5) uncertaintyOutY = 5;
+	uncertaintyOutZ = ABS(newPos.getZ() - lastPos.getZ());
 
 	uncertaintyOut = pos(uncertaintyOutX,uncertaintyOutY,uncertaintyOutZ);
 
