@@ -1,5 +1,28 @@
 #include "motionPrediction.h"
 
+//Simple position prediction
+pos posPredictionSimple(pos lastPos, pos newPos, pos& uncertaintyOut){
+	float x,y,z;
+	float uncertaintyOutX, uncertaintyOutY, uncertaintyOutZ;
+
+
+	x = newPos.getX() + (newPos.getX() - lastPos.getX());
+	y = newPos.getY() + (newPos.getY() - lastPos.getY());
+	z = newPos.getZ() + (newPos.getZ() - lastPos.getZ());
+
+	uncertaintyOutX = newPos.getX() - lastPos.getX();
+	if(uncertaintyOutX < 10) uncertaintyOutX = 20;
+	uncertaintyOutY = newPos.getY() - lastPos.getY();
+	if(uncertaintyOutY < 10) uncertaintyOutY = 20;
+	uncertaintyOutZ = newPos.getZ() - lastPos.getZ();
+	if(uncertaintyOutZ < 10) uncertaintyOutZ = 20;
+
+	uncertaintyOut = pos(uncertaintyOutX,uncertaintyOutY,uncertaintyOutZ);
+
+	return pos(x,y,z);
+}
+
+
 //Kalman resources on the internet:
 	//http://bilgin.esme.org/BitsBytes/KalmanFilterforDummies.aspx
 	//http://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf

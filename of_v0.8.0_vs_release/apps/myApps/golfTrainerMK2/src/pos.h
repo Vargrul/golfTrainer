@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class pos{
 	float x,y,z;
 public:
@@ -14,4 +16,8 @@ public:
 
 	void setZ(float);
 	float getZ();
+
+	friend bool operator==(pos &lhs, pos &rhs);
+	friend bool operator!=(pos &lhs, pos &rhs);
+	friend std::ostream& operator<<(std::ostream& os, pos& dt);
 };

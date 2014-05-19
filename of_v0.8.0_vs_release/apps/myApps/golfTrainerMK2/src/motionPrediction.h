@@ -46,7 +46,10 @@ struct kfValuesFloat{
 	float Pk;			//Updated error covariance
 
 };
+//Simple prediction
+pos posPredictionSimple(pos lastPos, pos newPos, pos& uncertaintyOut);
 
+//Kalman filter
 kfValues4x4 kfInitValues4x4();
 kfValuesFloat kfInitValuesFloat();
 kfValues4x4 kfTimeUpdate4x4(kfValues4x4 inValues);
