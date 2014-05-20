@@ -54,10 +54,10 @@ int oldRunningRoiH = 0;
 //Variables used for mass testing
 int testIterator = 0;	
 const int testSize = 1;
-const string logName [] = { "logOne.txt" };
-const string movPath [] = { "../../videos/test2/ts1_udden_h2l.mov" };
-const int startFrame [] = {0};
-const int endFrame []= {870};
+const string logName [] = {  "ts1nochanges_W_1_PF.txt" , "ts1nochanges_ERROR_1_PF.txt" , "ts1nochanges_Y_1_PF.txt" , "ts1nochanges_D_1_PF.txt" , "ts1_udden_h2l_W_1_PF.txt" , "ts1_udden_h2l_ERROR_1_PF.txt" , "ts1_udden_h2l_Y_1_PF.txt" , "ts1_udden_h2l_D_1_PF.txt" , "ts1_sudden_l2H_W_1_PF.txt" , "ts1_sudden_l2H_ERROR_1_PF.txt" , "ts1_sudden_l2H_Y_1_PF.txt" , "ts1_sudden_l2H_D_1_PF.txt" , "ts2_sudden_h2l_W_1_PF.txt" , "ts2_sudden_h2l_ERROR_1_PF.txt" , "ts2_sudden_h2l_Y_1_PF.txt" , "ts2_sudden_h2l_D_1_PF.txt" , "ts2_sudden_l2h_W_1_PF.txt" , "ts2_sudden_l2h_ERROR_1_PF.txt" , "ts2_sudden_l2h_Y_1_PF.txt" , "ts2_sudden_l2h_D_1_PF.txt" };
+const string movPath [] = {  "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" };
+const int startFrame [] = {80,270,450,670,110,690,390,930,35,255,105,180,75,715,270,520,90,765,340,550};
+const int endFrame []= {235,400,585,805,270,820,535,1090,86,305,154,235,205,860,425,651,255,920,485,720};
 bool printLegend = true;
 const string legend = "Frame_Number Initial_Part Normalization Background_Subtraction Average_Background_Update Thresholding BLOB_Detection BLOB_Classification Projection_Prediction Projected_X Projected_Y Uncertainty_X Uncertainty_Y ROI_X ROI_Y ROI_W ROI_H Number_Of_BLOBs BLOB_Area_1 Centroid_X_1 Centroid_Y_1 BLOB_Area_2 Centroid_X_2 Centroid_Y_2 BLOB_Area_3 Centroid_X_3 Centroid_Y_3";
 
