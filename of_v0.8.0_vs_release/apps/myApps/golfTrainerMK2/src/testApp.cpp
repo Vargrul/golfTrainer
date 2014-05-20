@@ -15,18 +15,18 @@ pos lastPos (50,50,50);
 kfValuesFloat kfInput;
 
 //Values for initial ROI
-/*	//Test 2
+	//Test 2
 const int initRoiX = 120;
 const int initRoiY = 110;
 const int initRoiW = 375;
 const int initRoiH = 285;
-*/
-	//Test 1
+
+/*	//Test 1
 const int initRoiX = 50;
 const int initRoiY = 140;
 const int initRoiW = 500;
 const int initRoiH = 340;
-
+*/
 
 //BLOBclassefication values
 	//Test 2
@@ -55,7 +55,7 @@ int oldRunningRoiH = 0;
 int testIterator = 0;	
 const int testSize = 1;
 const string logName [] = { "logOne.txt" };
-const string movPath [] = { "../../videos/test1/TP1_3m.mov" };
+const string movPath [] = { "../../videos/test2/ts1_udden_h2l.mov" };
 const int startFrame [] = {0};
 const int endFrame []= {870};
 bool printLegend = true;
@@ -97,7 +97,7 @@ void testApp::setup(){
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 	currentFrameOfImage.crop(initRoiX,initRoiY,initRoiW,initRoiH);
-	avarageBackground = currentFrameOfImage;
+	avarageBackground = normalizeImage(currentFrameOfImage);
 
 	kfInput = kfInitValuesFloat();
 }
@@ -119,7 +119,7 @@ void testApp::update(){
 		vecGuiObj[1].setFrame(startFrame[testIterator]);
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 		currentFrameOfImage.crop(initRoiX,initRoiY,initRoiW,initRoiH);
-		avarageBackground = currentFrameOfImage;
+		avarageBackground = normalizeImage(currentFrameOfImage);
 		printLegend = true;
 		if(testIterator >= testSize){
 			ofExit();
@@ -138,16 +138,16 @@ void testApp::update(){
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//normalization
-		/*normImg = normalizeImage(currentFrameOfImage);
-		loggingData.push_back(captureTime(lastTime));*/
+		normImg = normalizeImage(currentFrameOfImage);
+		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//segmentation Background
 			//Background Subtraction
-		bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
+		bgSub = gt_backgroundSubtraction(avarageBackground,normImg);
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//Updating the avarage background
-		avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
+		avarageBackground = gt_updateReference(avarageBackground, normImg, 0.8f);
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//Segmentation: Binary Image
