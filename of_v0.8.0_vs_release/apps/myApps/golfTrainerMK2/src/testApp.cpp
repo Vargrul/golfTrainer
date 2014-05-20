@@ -53,7 +53,7 @@ int oldRunningRoiH = 0;
 	
 //Variables used for mass testing
 int testIterator = 0;	
-const int testSize = 1;
+const int testSize = 20;
 const string logName [] = {  "ts1nochanges_W_1_PF.txt" , "ts1nochanges_ERROR_1_PF.txt" , "ts1nochanges_Y_1_PF.txt" , "ts1nochanges_D_1_PF.txt" , "ts1_udden_h2l_W_1_PF.txt" , "ts1_udden_h2l_ERROR_1_PF.txt" , "ts1_udden_h2l_Y_1_PF.txt" , "ts1_udden_h2l_D_1_PF.txt" , "ts1_sudden_l2H_W_1_PF.txt" , "ts1_sudden_l2H_ERROR_1_PF.txt" , "ts1_sudden_l2H_Y_1_PF.txt" , "ts1_sudden_l2H_D_1_PF.txt" , "ts2_sudden_h2l_W_1_PF.txt" , "ts2_sudden_h2l_ERROR_1_PF.txt" , "ts2_sudden_h2l_Y_1_PF.txt" , "ts2_sudden_h2l_D_1_PF.txt" , "ts2_sudden_l2h_W_1_PF.txt" , "ts2_sudden_l2h_ERROR_1_PF.txt" , "ts2_sudden_l2h_Y_1_PF.txt" , "ts2_sudden_l2h_D_1_PF.txt" };
 const string movPath [] = {  "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" };
 const int startFrame [] = {80,270,450,670,110,690,390,930,35,255,105,180,75,715,270,520,90,765,340,550};
