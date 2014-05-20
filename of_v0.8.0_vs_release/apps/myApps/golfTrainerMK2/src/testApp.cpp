@@ -111,6 +111,7 @@ void testApp::update(){
 	vecGuiObj[1].nextFrame();
 	vecGuiObj[1].nextFrame();
 	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
 	vecGuiObj[1].vidUpdate();
 
 	if(vecGuiObj[1].getCurrentFrame() > endFrame[testIterator] || vecGuiObj[1].getCurrentFrame() < startFrame[testIterator]){
