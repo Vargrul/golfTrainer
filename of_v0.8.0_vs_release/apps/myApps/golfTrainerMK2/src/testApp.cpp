@@ -54,7 +54,7 @@ int oldRunningRoiH = 0;
 //Variables used for mass testing
 int testIterator = 0;	
 const int testSize = 20;
-const string logName [] = { "ts1nochanges_W_1.txt" , "ts1nochanges_ERROR_1.txt" , "ts1nochanges_Y_1.txt" , "ts1nochanges_D_1.txt" , "ts1_udden_h2l_W_1.txt" , "ts1_udden_h2l_ERROR_1.txt" , "ts1_udden_h2l_Y_1.txt" , "ts1_udden_h2l_D_1.txt" , "ts1_sudden_l2H_W_1.txt" , "ts1_sudden_l2H_ERROR_1.txt" , "ts1_sudden_l2H_Y_1.txt" , "ts1_sudden_l2H_D_1.txt" , "ts2_sudden_h2l_W_1.txt" , "ts2_sudden_h2l_ERROR_1.txt" , "ts2_sudden_h2l_Y_1.txt" , "ts2_sudden_h2l_D_1.txt" , "ts2_sudden_l2h_W_1.txt" , "ts2_sudden_l2h_ERROR_1.txt" , "ts2_sudden_l2h_Y_1.txt" , "ts2_sudden_l2h_D_1.txt" };
+const string logName [] = { "ts1nochanges_W_1_PF.txt" , "ts1nochanges_ERROR_1_PF.txt" , "ts1nochanges_Y_1_PF.txt" , "ts1nochanges_D_1_PF.txt" , "ts1_udden_h2l_W_1_PF.txt" , "ts1_udden_h2l_ERROR_1_PF.txt" , "ts1_udden_h2l_Y_1_PF.txt" , "ts1_udden_h2l_D_1_PF.txt" , "ts1_sudden_l2H_W_1_PF.txt" , "ts1_sudden_l2H_ERROR_1_PF.txt" , "ts1_sudden_l2H_Y_1_PF.txt" , "ts1_sudden_l2H_D_1_PF.txt" , "ts2_sudden_h2l_W_1_PF.txt" , "ts2_sudden_h2l_ERROR_1_PF.txt" , "ts2_sudden_h2l_Y_1_PF.txt" , "ts2_sudden_h2l_D_1_PF.txt" , "ts2_sudden_l2h_W_1_PF.txt" , "ts2_sudden_l2h_ERROR_1_PF.txt" , "ts2_sudden_l2h_Y_1_PF.txt" , "ts2_sudden_l2h_D_1_PF.txt"};
 const string movPath [] = {  "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1nochanges.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_udden_h2l.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts1_sudden_l2H.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_h2l.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" , "../../videos/test2/ts2_sudden_l2h.mov" };
 const int startFrame [] = {80,270,450,670,110,690,390,930,35,255,105,180,75,715,270,520,90,765,340,550};
 const int endFrame []= {235,400,585,805,270,820,535,1090,86,305,154,235,205,860,425,651,255,920,485,720};
@@ -71,7 +71,7 @@ void testApp::setup(){
 	
 	vecGuiObj[1].setVideo(movPath[testIterator]);
 	vecGuiObj[1].setFrame(startFrame[testIterator]);
-	vecGuiObj[1].play();
+	//vecGuiObj[1].play();
 
 	runningRoiX = 0;
 	runningRoiY = 0;
@@ -108,6 +108,10 @@ void testApp::update(){
 	clock_t lastTime = clock();
 	string sTemp;
 
+	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
 	vecGuiObj[1].vidUpdate();
 
 	if(vecGuiObj[1].getCurrentFrame() > endFrame[testIterator] || vecGuiObj[1].getCurrentFrame() < startFrame[testIterator]){
@@ -199,14 +203,14 @@ void testApp::update(){
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//Logging the predicted position
-		loggingData.push_back(to_string(prediction.getX()));
-		loggingData.push_back(to_string(prediction.getY()));
+		loggingData.push_back(to_string(prediction.getX() + initRoiX));
+		loggingData.push_back(to_string(prediction.getY() + initRoiY));
 		//Logging the uncertainty
 		loggingData.push_back(to_string(uncertainty.getX()));
 		loggingData.push_back(to_string(uncertainty.getY()));
 		//Logging the ROI used for this pass
-		loggingData.push_back(to_string(oldRunningRoiX));
-		loggingData.push_back(to_string(oldRunningRoiY));
+		loggingData.push_back(to_string(oldRunningRoiX + initRoiX));
+		loggingData.push_back(to_string(oldRunningRoiY + initRoiY));
 		loggingData.push_back(to_string(oldRunningRoiW));
 		loggingData.push_back(to_string(oldRunningRoiH));
 		/*----------------------------------------------------------------------------------------------*/
@@ -214,8 +218,8 @@ void testApp::update(){
 		loggingData.push_back(to_string(contourFinder.nBlobs));
 		for (int i = 0 ; i < contourFinder.nBlobs ; i++){
 			loggingData.push_back(to_string(contourFinder.blobs.at(i).nPts));
-			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.x + oldRunningRoiX));
-			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.y + oldRunningRoiY));
+			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.x + oldRunningRoiX + initRoiX));
+			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.y + oldRunningRoiY + initRoiY));
 		}/*
 		for (int i = 0; i < 10 - contourFinder.nBlobs; i++)
 		{
