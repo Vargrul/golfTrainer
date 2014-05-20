@@ -55,8 +55,8 @@ int oldRunningRoiH = 0;
 int testIterator = 0;	
 const int testSize = 1;
 const string logName [] = { "logOne.txt" };
-const string movPath [] = { "../../videos/test2/ts1nochanges.mov" };
-const int startFrame [] = {100};
+const string movPath [] = { "../../videos/test1/TP1_5m.mov" };
+const int startFrame [] = {0};
 const int endFrame []= {870};
 bool printLegend = true;
 const string legend = "Frame_Number Initial_Part Normalization Background_Subtraction Average_Background_Update Thresholding BLOB_Detection BLOB_Classification Projection_Prediction Projected_X Projected_Y Uncertainty_X Uncertainty_Y ROI_X ROI_Y ROI_W ROI_H Number_Of_BLOBs BLOB_Area_1 Centroid_X_1 Centroid_Y_1 BLOB_Area_2 Centroid_X_2 Centroid_Y_2 BLOB_Area_3 Centroid_X_3 Centroid_Y_3";
@@ -136,8 +136,6 @@ void testApp::update(){
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 		currentFrameOfImage.crop(initRoiX,initRoiY,initRoiW,initRoiH);
 		threshImgCvGray.resetROI();
-
-
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//normalization
@@ -217,12 +215,12 @@ void testApp::update(){
 		loggingData.push_back(to_string(oldRunningRoiH));
 		/*----------------------------------------------------------------------------------------------*/
 		//Logging of the BLOB data
-		/*loggingData.push_back(to_string(contourFinder.nBlobs));
+		loggingData.push_back(to_string(contourFinder.nBlobs));
 		for (int i = 0 ; i < contourFinder.nBlobs ; i++){
 			loggingData.push_back(to_string(contourFinder.blobs.at(i).nPts));
 			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.x + runningRoiX));
 			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.y + runningRoiY));
-		}
+		}/*
 		for (int i = 0; i < 10 - contourFinder.nBlobs; i++)
 		{
 			loggingData.push_back("0");
@@ -235,13 +233,13 @@ void testApp::update(){
 		vecGuiObj[2].setImgFromPixels(threshImgCvGray.getPixelsRef());
 		//vecGuiObj[3].setImgFromPixels(vecGuiObj[1].getPixelsRef());
 		ofImage segInten;
-		segInten.allocate(initRoiW,initRoiH,OF_IMAGE_GRAYSCALE);
+		/*segInten.allocate(initRoiW,initRoiH,OF_IMAGE_GRAYSCALE);
 		for(int i = 0; i < bgSub.width ; i++){
 			for(int ii = 0; ii < bgSub.height; ii++){
 				segInten.setColor(i,ii,ofColor(normImg.getColor(i,ii).a));
 			}
-		}
-		vecGuiObj[3].setImgFromPixels(segInten);
+		}*/
+		vecGuiObj[3].setImgFromPixels(avarageBackground);
 
 		printLegend = false;
 		/*----------------------------------------------------------------------------------------------*/

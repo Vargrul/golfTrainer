@@ -38,6 +38,17 @@ ofImage gt_backgroundSubtraction(ofImage backgroundImg, ofImage currentFrame){
 	return foregroundImg;
 };
 
+ofImage gt_backgroundSubtraction(ofImage backgroundImg, ofImage currentFrame, int roiX, int roiY, int roiW, int roiH){
+	ofImage foregroundImg = currentFrame;
+	foregroundImg.crop(0,0,roiW,roiH);
+	for(int x=0; x<roiW;x++){
+		for(int y=0; y<roiH;y++){
+			foregroundImg.setColor(x,y,ofColor(ABS(currentFrame.getColor(x + roiX,y + roiY).r - backgroundImg.getColor(x + roiX,y + roiY).r),ABS(currentFrame.getColor(x + roiX,y + roiY).g - backgroundImg.getColor(x + roiX,y + roiY).g),ABS(currentFrame.getColor(x + roiX,y + roiY).b - backgroundImg.getColor(x + roiX,y + roiY).b),ABS(currentFrame.getColor(x + roiX,y + roiY).a - backgroundImg.getColor(x + roiX,y + roiY).a)));
+		}
+	}
+	return foregroundImg;
+};
+
 ofImage gt_updateReference(ofImage backgroundImg, ofImage currentFrame, float gt_alpha){
 	ofImage newRef = currentFrame;
 	for(int x=0; x<backgroundImg.getWidth();x++){
