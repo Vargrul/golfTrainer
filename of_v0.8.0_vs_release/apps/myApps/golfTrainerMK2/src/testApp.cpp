@@ -10,23 +10,23 @@ ofImage currentFrameOfImage,normImg, bgSub,avarageBackground;
 
 pos prediction;
 pos uncertainty;
-pos lastPos (0,0,0);
+pos lastPos (50,50,50);
 
 kfValuesFloat kfInput;
 
 //Values for initial ROI
-	//Test 2
+/*	//Test 2
 const int initRoiX = 120;
 const int initRoiY = 110;
 const int initRoiW = 375;
 const int initRoiH = 285;
-
-/*	//Test 1
+*/
+	//Test 1
 const int initRoiX = 50;
 const int initRoiY = 140;
 const int initRoiW = 500;
 const int initRoiH = 340;
-*/
+
 
 //BLOBclassefication values
 	//Test 2
@@ -55,7 +55,7 @@ int oldRunningRoiH = 0;
 int testIterator = 0;	
 const int testSize = 1;
 const string logName [] = { "logOne.txt" };
-const string movPath [] = { "../../videos/test1/TP1_5m.mov" };
+const string movPath [] = { "../../videos/test1/TP1_3m.mov" };
 const int startFrame [] = {0};
 const int endFrame []= {870};
 bool printLegend = true;
@@ -97,8 +97,7 @@ void testApp::setup(){
 
 	currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 	currentFrameOfImage.crop(initRoiX,initRoiY,initRoiW,initRoiH);
-	//avarageBackground = currentFrameOfImage;
-	avarageBackground = normalizeImage(currentFrameOfImage);
+	avarageBackground = currentFrameOfImage;
 
 	kfInput = kfInitValuesFloat();
 }
@@ -120,7 +119,7 @@ void testApp::update(){
 		vecGuiObj[1].setFrame(startFrame[testIterator]);
 		currentFrameOfImage.setFromPixels(vecGuiObj[1].getPixelsRef());
 		currentFrameOfImage.crop(initRoiX,initRoiY,initRoiW,initRoiH);
-		avarageBackground = normalizeImage(currentFrameOfImage);
+		avarageBackground = currentFrameOfImage;
 		printLegend = true;
 		if(testIterator >= testSize){
 			ofExit();
@@ -139,16 +138,16 @@ void testApp::update(){
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//normalization
-		normImg = normalizeImage(currentFrameOfImage);
-		loggingData.push_back(captureTime(lastTime));
+		/*normImg = normalizeImage(currentFrameOfImage);
+		loggingData.push_back(captureTime(lastTime));*/
 		/*----------------------------------------------------------------------------------------------*/
 		//segmentation Background
 			//Background Subtraction
-		bgSub = gt_backgroundSubtraction(avarageBackground,normImg);
+		bgSub = gt_backgroundSubtraction(avarageBackground,currentFrameOfImage);
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//Updating the avarage background
-		avarageBackground = gt_updateReference(avarageBackground, normImg, 0.8f);
+		avarageBackground = gt_updateReference(avarageBackground, currentFrameOfImage, 0.8f);
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//Segmentation: Binary Image
@@ -198,7 +197,7 @@ void testApp::update(){
 			runningRoiH = initRoiH;
 			lastPos = pos(0,0,0);
 			prediction = pos(0,0,0);
-			uncertainty = pos(0,0,0);
+			uncertainty = pos(50,50,50);
 		}
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
@@ -218,8 +217,8 @@ void testApp::update(){
 		loggingData.push_back(to_string(contourFinder.nBlobs));
 		for (int i = 0 ; i < contourFinder.nBlobs ; i++){
 			loggingData.push_back(to_string(contourFinder.blobs.at(i).nPts));
-			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.x + runningRoiX));
-			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.y + runningRoiY));
+			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.x + oldRunningRoiX));
+			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.y + oldRunningRoiY));
 		}/*
 		for (int i = 0; i < 10 - contourFinder.nBlobs; i++)
 		{
