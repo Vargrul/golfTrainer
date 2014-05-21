@@ -54,7 +54,7 @@ int oldRunningRoiH = 0;
 //Variables used for mass testing
 int testIterator = 0;	
 const int testSize = 61;
-const string logName [] = { "Måge.txt" , "TP1_0m_W_1.txt" , "TP1_0m_W_2.txt" , "TP1_0m_W_3.txt" , "TP1_0m_W_4.txt" , "TP1_0m_Y_1.txt" , "TP1_0m_D_1.txt" , "TP1_1m_W_1.txt" , "TP1_1m_Y_1.txt" , "TP1_1m_D_1.txt" , "TP1_2m_W_1.txt" , "TP1_2m_Y_1.txt" , "TP1_2m_D_1.txt" , "TP1_3m_W_1.txt" , "TP1_3m_W_2.txt" , "TP1_3m_W_3.txt" , "TP1_3m_W_4.txt" , "TP1_3m_Y_1.txt" , "TP1_3m_D_1.txt" , "TP1_4m_W_1.txt" , "TP1_4m_Y_1.txt" , "TP1_4m_D_1.txt" , "TP1_5m_W_1.txt" , "TP1_5m_Y_1.txt" , "TP1_5m_D_1.txt" , "TP1_6m_W_1.txt" , "TP1_6m_Y_1.txt" , "TP1_6m_D_1.txt" , "TP1_7m_W_1.txt" , "TP1_7m_Y_1.txt" , "TP1_7m_D_1.txt" , "TP1_8m_W_1.txt" , "TP1_8m_Y_1.txt" , "TP1_8m_D_1.txt" , "TP1_9m_W_1.txt" , "TP1_9m_Y_1.txt" , "TP1_9m_D_1.txt" , "TP1_1m_right_W_1.txt" , "TP1_1m_right_Y_1.txt" , "TP1_1m_right_D_1.txt" , "TP1_2m_right_W_1.txt" , "TP1_2m_right_Y_1.txt" , "TP1_2m_right_D_1.txt" , "TP1_3m_right_W_1.txt" , "TP1_3m_right_Y_1.txt" , "TP1_3m_right_D_1.txt" , "TP1_4m_right_W_1.txt" , "TP1_4m_right_Y_1.txt" , "TP1_4m_right_D_1.txt" , "TP1_5m_right_W_1.txt" , "TP1_5m_right_Y_1.txt" , "TP1_5m_right_D_1.txt" , "TP1_6m_right_W_1.txt" , "TP1_6m_right_Y_1.txt" , "TP1_6m_right_D_1.txt" , "TP1_7m_right_W_1.txt" , "TP1_7m_right_Y_1.txt" , "TP1_7m_right_D_1.txt" , "TP1_8m_right_W_1.txt" , "TP1_8m_right_Y_1.txt" , "TP1_8m_right_D_1.txt"};
+const string logName [] = { "Måge.txt" ,  "TP1_0m_W_1_PF.txt" , "TP1_0m_W_2_PF.txt" , "TP1_0m_W_3_PF.txt" , "TP1_0m_W_4_PF.txt" , "TP1_0m_Y_1_PF.txt" , "TP1_0m_D_1_PF.txt" , "TP1_1m_W_1_PF.txt" , "TP1_1m_Y_1_PF.txt" , "TP1_1m_D_1_PF.txt" , "TP1_2m_W_1_PF.txt" , "TP1_2m_Y_1_PF.txt" , "TP1_2m_D_1_PF.txt" , "TP1_3m_W_1_PF.txt" , "TP1_3m_W_2_PF.txt" , "TP1_3m_W_3_PF.txt" , "TP1_3m_W_4_PF.txt" , "TP1_3m_Y_1_PF.txt" , "TP1_3m_D_1_PF.txt" , "TP1_4m_W_1_PF.txt" , "TP1_4m_Y_1_PF.txt" , "TP1_4m_D_1_PF.txt" , "TP1_5m_W_1_PF.txt" , "TP1_5m_Y_1_PF.txt" , "TP1_5m_D_1_PF.txt" , "TP1_6m_W_1_PF.txt" , "TP1_6m_Y_1_PF.txt" , "TP1_6m_D_1_PF.txt" , "TP1_7m_W_1_PF.txt" , "TP1_7m_Y_1_PF.txt" , "TP1_7m_D_1_PF.txt" , "TP1_8m_W_1_PF.txt" , "TP1_8m_Y_1_PF.txt" , "TP1_8m_D_1_PF.txt" , "TP1_9m_W_1_PF.txt" , "TP1_9m_Y_1_PF.txt" , "TP1_9m_D_1_PF.txt" , "TP1_1m_right_W_1_PF.txt" , "TP1_1m_right_Y_1_PF.txt" , "TP1_1m_right_D_1_PF.txt" , "TP1_2m_right_W_1_PF.txt" , "TP1_2m_right_Y_1_PF.txt" , "TP1_2m_right_D_1_PF.txt" , "TP1_3m_right_W_1_PF.txt" , "TP1_3m_right_Y_1_PF.txt" , "TP1_3m_right_D_1_PF.txt" , "TP1_4m_right_W_1_PF.txt" , "TP1_4m_right_Y_1_PF.txt" , "TP1_4m_right_D_1_PF.txt" , "TP1_5m_right_W_1_PF.txt" , "TP1_5m_right_Y_1_PF.txt" , "TP1_5m_right_D_1_PF.txt" , "TP1_6m_right_W_1_PF.txt" , "TP1_6m_right_Y_1_PF.txt" , "TP1_6m_right_D_1_PF.txt" , "TP1_7m_right_W_1_PF.txt" , "TP1_7m_right_Y_1_PF.txt" , "TP1_7m_right_D_1_PF.txt" , "TP1_8m_right_W_1_PF.txt" , "TP1_8m_right_Y_1_PF.txt" , "TP1_8m_right_D_1_PF.txt"};
 const string movPath [] = { "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_0m.mov" , "../../videos/test1/TP1_1m.mov" , "../../videos/test1/TP1_1m.mov" , "../../videos/test1/TP1_1m.mov" , "../../videos/test1/TP1_2m.mov" , "../../videos/test1/TP1_2m.mov" , "../../videos/test1/TP1_2m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_3m.mov" , "../../videos/test1/TP1_4m.mov" , "../../videos/test1/TP1_4m.mov" , "../../videos/test1/TP1_4m.mov" , "../../videos/test1/TP1_5m.mov" , "../../videos/test1/TP1_5m.mov" , "../../videos/test1/TP1_5m.mov" , "../../videos/test1/TP1_6m.mov" , "../../videos/test1/TP1_6m.mov" , "../../videos/test1/TP1_6m.mov" , "../../videos/test1/TP1_7m.mov" , "../../videos/test1/TP1_7m.mov" , "../../videos/test1/TP1_7m.mov" , "../../videos/test1/TP1_8m.mov" , "../../videos/test1/TP1_8m.mov" , "../../videos/test1/TP1_8m.mov" , "../../videos/test1/TP1_9m.mov" , "../../videos/test1/TP1_9m.mov" , "../../videos/test1/TP1_9m.mov" , "../../videos/test1/TP1_1m_right.mov" , "../../videos/test1/TP1_1m_right.mov" , "../../videos/test1/TP1_1m_right.mov" , "../../videos/test1/TP1_2m_right.mov" , "../../videos/test1/TP1_2m_right.mov" , "../../videos/test1/TP1_2m_right.mov" , "../../videos/test1/TP1_3m_right.mov" , "../../videos/test1/TP1_3m_right.mov" , "../../videos/test1/TP1_3m_right.mov" , "../../videos/test1/TP1_4m_right.mov" , "../../videos/test1/TP1_4m_right.mov" , "../../videos/test1/TP1_4m_right.mov" , "../../videos/test1/TP1_5m_right.mov" , "../../videos/test1/TP1_5m_right.mov" , "../../videos/test1/TP1_5m_right.mov" , "../../videos/test1/TP1_6m_right.mov" , "../../videos/test1/TP1_6m_right.mov" , "../../videos/test1/TP1_6m_right.mov" , "../../videos/test1/TP1_7m_right.mov" , "../../videos/test1/TP1_7m_right.mov" , "../../videos/test1/TP1_7m_right.mov" , "../../videos/test1/TP1_8m_right.mov" , "../../videos/test1/TP1_8m_right.mov" , "../../videos/test1/TP1_8m_right.mov"  };
 const int startFrame [] = {0,120,320,540,850,1005,1280,650,850,1065,220,390,485,50,130,230,325,420,505,290,395,475,155,420,520,390,485,595,250,490,580,225,430,520,215,425,520,285,900,1050,250,850,1000,90,775,920,400,1010,1160,117,860,1040,430,820,990,115,750,935,140,415,500};
 const int endFrame []= {42,280,515,730,990,1265,1470,800,965,1210,315,480,585,130,230,320,420,505,615,395,475,560,255,520,600,485,585,675,345,575,700,320,520,595,315,520,620,490,1050,1250,450,990,1200,260,920,1150,660,1160,1320,330,1040,1240,640,990,1200,305,935,1135,225,500,610};
@@ -71,7 +71,7 @@ void testApp::setup(){
 	
 	vecGuiObj[1].setVideo(movPath[testIterator]);
 	vecGuiObj[1].setFrame(startFrame[testIterator]);
-	vecGuiObj[1].play();
+	//vecGuiObj[1].play();
 
 	runningRoiX = 0;
 	runningRoiY = 0;
@@ -107,6 +107,11 @@ void testApp::update(){
 	vector<string> loggingData;
 	clock_t lastTime = clock();
 	string sTemp;
+
+	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
+	vecGuiObj[1].nextFrame();
 	vecGuiObj[1].vidUpdate();
 
 	if(vecGuiObj[1].getCurrentFrame() > endFrame[testIterator] || vecGuiObj[1].getCurrentFrame() < startFrame[testIterator]){
@@ -198,14 +203,14 @@ void testApp::update(){
 		loggingData.push_back(captureTime(lastTime));
 		/*----------------------------------------------------------------------------------------------*/
 		//Logging the predicted position
-		loggingData.push_back(to_string(prediction.getX()));
-		loggingData.push_back(to_string(prediction.getY()));
+		loggingData.push_back(to_string(prediction.getX() + initRoiX));
+		loggingData.push_back(to_string(prediction.getY() + initRoiY));
 		//Logging the uncertainty
 		loggingData.push_back(to_string(uncertainty.getX()));
 		loggingData.push_back(to_string(uncertainty.getY()));
 		//Logging the ROI used for this pass
-		loggingData.push_back(to_string(oldRunningRoiX));
-		loggingData.push_back(to_string(oldRunningRoiY));
+		loggingData.push_back(to_string(oldRunningRoiX + initRoiX));
+		loggingData.push_back(to_string(oldRunningRoiY + initRoiY));
 		loggingData.push_back(to_string(oldRunningRoiW));
 		loggingData.push_back(to_string(oldRunningRoiH));
 		/*----------------------------------------------------------------------------------------------*/
@@ -213,8 +218,8 @@ void testApp::update(){
 		loggingData.push_back(to_string(contourFinder.nBlobs));
 		for (int i = 0 ; i < contourFinder.nBlobs ; i++){
 			loggingData.push_back(to_string(contourFinder.blobs.at(i).nPts));
-			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.x + oldRunningRoiX));
-			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.y + oldRunningRoiY));
+			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.x + oldRunningRoiX + initRoiX));
+			loggingData.push_back(to_string(contourFinder.blobs.at(i).centroid.y + oldRunningRoiY + initRoiY));
 		}/*
 		for (int i = 0; i < 10 - contourFinder.nBlobs; i++)
 		{
